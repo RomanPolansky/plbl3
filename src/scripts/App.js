@@ -1,8 +1,6 @@
 import * as PIXI from 'pixi.js'
-import { Loader } from './Loader'
+import { BackGround } from './BackGround'
 import { SceneMain } from './SceneMain'
-import { Global } from './Global'
-
 export class App
 {
     init()
@@ -19,28 +17,20 @@ export class App
         
         document.body.appendChild(this.app.view)
         this.app.view.classList.add('cvs')
-
-        this.loader = new Loader(this.app.loader)
-        this.loader.preload().then(() => this.start())
     }
     start()
     {
-        this.scene = new SceneMain()
-        this.app.stage.addChild(this.scene)
-        this.resize(window.innerWidth, window.innerHeight)
-
-        this.bg = new PIXI.Sprite(Global.resources['bg'].texture)
-        this.bg.width = this.app.view.width
-        this.bg.height = this.app.view.height
+        this.bg = new BackGround()
         this.app.stage.addChild(this.bg)
+        
+        this.resize(window.innerWidth, window.innerHeight)
     }
     resize(Width, Height)
     {
         this.app.renderer.resize(Width, Height);
         if (this.bg !== undefined)
         {
-            this.bg.width = this.app.view.width
-            this.bg.height = this.app.view.height
+            this.bg.resize(Width, Height)
         }
     }
 }

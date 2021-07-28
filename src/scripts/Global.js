@@ -1,3 +1,1 @@
-export const Global = {
-    resources: {}
-}
+export const sprites = {}
