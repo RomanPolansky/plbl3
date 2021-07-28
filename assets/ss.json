@@ -1,0 +1,100 @@
+{"frames": {
+
+"bingo":
+{
+	"frame": {"x":500,"y":1085,"w":116,"h":113},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":116,"h":113},
+	"sourceSize": {"w":116,"h":113}
+},
+"button":
+{
+	"frame": {"x":1107,"y":1,"w":1035,"h":265},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1035,"h":265},
+	"sourceSize": {"w":1035,"h":265}
+},
+"circleBar":
+{
+	"frame": {"x":505,"y":1220,"w":145,"h":144},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":145,"h":144},
+	"sourceSize": {"w":145,"h":144}
+},
+"coin":
+{
+	"frame": {"x":615,"y":1085,"w":114,"h":113},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":114,"h":113},
+	"sourceSize": {"w":114,"h":113}
+},
+"luckyCoin":
+{
+	"frame": {"x":651,"y":1220,"w":114,"h":113},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":114,"h":113},
+	"sourceSize": {"w":114,"h":113}
+},
+"playBtn":
+{
+	"frame": {"x":389,"y":1085,"w":109,"h":124},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":15,"y":0,"w":109,"h":124},
+	"sourceSize": {"w":124,"h":124}
+},
+"puzzle":
+{
+	"frame": {"x":389,"y":1220,"w":114,"h":149},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":114,"h":149},
+	"sourceSize": {"w":114,"h":149}
+},
+"questionMark":
+{
+	"frame": {"x":1290,"y":1038,"w":57,"h":87},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":57,"h":87},
+	"sourceSize": {"w":57,"h":87}
+},
+"rect":
+{
+	"frame": {"x":1107,"y":1038,"w":181,"h":180},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":181,"h":180},
+	"sourceSize": {"w":181,"h":180}
+},
+"spinCircle":
+{
+	"frame": {"x":1,"y":1085,"w":386,"h":385},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":386,"h":385},
+	"sourceSize": {"w":386,"h":385}
+},
+"wheel":
+{
+	"frame": {"x":1,"y":1,"w":1082,"h":1104},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":1,"w":1082,"h":1104},
+	"sourceSize": {"w":1083,"h":1106}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "ss.png",
+	"format": "RGBA8888",
+	"size": {"w":1373,"h":1471},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:dc283ad2f4a7e1e7b4f56a1401863289:523be2c03faf90312cc5b7641d38bf1b:7a7dafe8686879c23378e53f9469620c$"
+}
+}
