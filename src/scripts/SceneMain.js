@@ -1,24 +1,29 @@
 import * as PIXI from 'pixi.js'
+import { Spin } from './spin'
+import { SpinCenter } from './SpinCenter'
+// import { sprites } from './Global'
+
 
 export class SceneMain extends PIXI.Container
 {
     constructor()
     {
         super()
-
-        this.wheel = sprites.wheel
-        this.spinCircle = sprites.spinCircle
-        this.circleBar = sprites.circleBar
-        this.playBtn = sprites.playBtn 
-        this.coin = sprites.coin
-        this.bingo = sprites.bingo
-        this.luckyCoin = sprites.luckyCoin
-        this.puzzle = sprites.puzzle
         
-
-        this.button = sprites.button        
+        // this.button = sprites.button        
         
-        this.rect = sprites.rect
-        this.questionMark = sprites.questionMark
+        // this.rect = sprites.rect
+        // this.questionMark = sprites.questionMark
+
+        this.spin = new Spin()
+        this.spinCenter = new SpinCenter()
+
+        this.addChild(this.spin)
+        this.addChild(this.spinCenter)
+    }
+    resize(width, height)
+    {
+        this.spin.resize(width, height)
+        this.spinCenter.resize(width, height)
     }
 }
