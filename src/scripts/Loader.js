@@ -79,10 +79,22 @@ export function loaderAdd() {
         sprites.spinCircle   = new PIXI.Sprite(resources['game'].textures['spinCircle'])
         
         sprites.questionMark1 = new PIXI.Sprite(resources['game'].textures['questionMark'])
+        sprites.questionMark1.anchor.set(0.5)
+
         sprites.questionMark2 = new PIXI.Sprite(resources['game'].textures['questionMark'])
+        sprites.questionMark2.anchor.set(0.5)
+
         sprites.questionMark3 = new PIXI.Sprite(resources['game'].textures['questionMark'])
-        sprites.rect1         = new PIXI.Sprite(resources['game'].textures['rect'])
-        sprites.rect2         = new PIXI.Sprite(resources['game'].textures['rect'])
-        sprites.rect3         = new PIXI.Sprite(resources['game'].textures['rect'])
+        sprites.questionMark3.anchor.set(0.5)
+
+        sprites.rect1 = new PIXI.Sprite(resources['game'].textures['rect'])
+        sprites.rect1.anchor.set(0.5)
+
+        sprites.rect2 = new PIXI.Sprite(resources['game'].textures['rect'])
+        sprites.rect2.anchor.set(0.5)
+
+        sprites.rect3 = new PIXI.Sprite(resources['game'].textures['rect'])
+        sprites.rect3.anchor.set(0.5)
+
     })
 }

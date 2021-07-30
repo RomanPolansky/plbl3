@@ -26,8 +26,7 @@ export class Spin extends PIXI.Container
     }
     resize(width, height)
     {
-        this.x = width/2
-        this.y = height/2
+       
     }
     roll()
     {
