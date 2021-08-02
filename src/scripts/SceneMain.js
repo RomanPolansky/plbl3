@@ -19,16 +19,11 @@ export class SceneMain extends PIXI.Container
         this.addChild(this.storeButton)
 
     }
-    gameRatioPosition(ratio)
-    {
-    }
     resize(width, height)
     {
         this.x = width/2
         this.y = height/2
 
-        this.spin.resize(width, height)
-        this.spinCenter.resize(width, height)
         this.prizeBar.resize(width, height)
 
         let ratio = width > height ? 'horisontal' : 'vertical'

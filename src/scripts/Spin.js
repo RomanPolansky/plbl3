@@ -24,10 +24,6 @@ export class Spin extends PIXI.Container
             this.roll()
         })
     }
-    resize(width, height)
-    {
-       
-    }
     roll()
     {
         let newAngle = this.angle+330 + 360

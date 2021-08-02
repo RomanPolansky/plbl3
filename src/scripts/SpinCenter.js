@@ -39,11 +39,6 @@ export class SpinCenter extends PIXI.Container
             this.isClicked = false
         })
     }
-    resize(width, height)
-    {
-        this.x = width/2
-        // this.y = height/2
-    }
     btnAnim()
     {
         new Tween(this.btnCont).to({scale : { x: 1.1, y: 1.1} }, 400).yoyo(true).repeat(Infinity).start(app.game.time)
