@@ -37,7 +37,7 @@ export class SceneMain extends PIXI.Container
         {
             let scale = height/(this.spin.height + this.storeButton.height + this.storeButton.height)
             this.scale.set(scale)
-        }
+        } 
         if (ratio === 'vertical')
         {
             let scale1 = width/(this.spin.width + this.spin.width*0.1)

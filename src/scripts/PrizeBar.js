@@ -32,7 +32,7 @@ export class PrizeBar extends PIXI.Container
     }
   
     anim(item, delay = 0)
-    {
+    { 
         new Tween(item).to({scale : { x: 1.65, y: 1.65 } }, 450).delay(delay).yoyo(true).repeat(Infinity).start(app.game.time)
     }
     qmPosition()

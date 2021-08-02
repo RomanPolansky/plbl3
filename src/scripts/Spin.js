@@ -5,7 +5,7 @@ import { sprites, app } from './Global'
 export class Spin extends PIXI.Container
 {
     constructor()
-    {
+    { 
         super()
 
         this.wheel = sprites.wheel

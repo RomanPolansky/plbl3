@@ -12,5 +12,5 @@ export class StoreButton extends PIXI.Container
         this.button.anchor.set(0.5)
 
         this.addChild(this.button)
-    }
+    } 
 }

@@ -1,2 +1,2 @@
 export const sprites = {}
-export const app = {}
+export const app = {} 

@@ -1,6 +1,5 @@
 import * as PIXI from 'pixi.js'
 import { sprites } from './Global'
-
 export class BackGround extends PIXI.Container
 {
     constructor()

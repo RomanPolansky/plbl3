@@ -31,7 +31,6 @@ export class App
     {
         this.bg = new BackGround()
         this.app.stage.addChild(this.bg)
-
         this.sceneMain = new SceneMain()
         this.app.stage.addChild(this.sceneMain)
         

@@ -8,7 +8,7 @@ export class SpinCenter extends PIXI.Container
     {
         super()
 
-        this.isClicked = false
+        this.isClicked = false 
         
         this.spinCircle = sprites.spinCircle
         this.spinCircle.anchor.set(0.5)
