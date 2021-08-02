@@ -8,13 +8,9 @@ export class StoreButton extends PIXI.Container
     {
         super()
         this.button = sprites.button
-        this.button.scale.set(0.4)
+        this.button.scale.set(0.5)
         this.button.anchor.set(0.5)
 
         this.addChild(this.button)
-    }
-    resize(width, height)
-    {
-        this.button.x = width/2
     }
 }

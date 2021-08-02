@@ -24,41 +24,54 @@ export class SceneMain extends PIXI.Container
     }
     resize(width, height)
     {
-        console.log(this.x)
+        this.x = width/2
+        this.y = height/2
+
         this.spin.resize(width, height)
         this.spinCenter.resize(width, height)
         this.prizeBar.resize(width, height)
-        this.storeButton.resize(width, height)
 
         let ratio = width > height ? 'horisontal' : 'vertical'
+
+        if (ratio === 'horisontal')
+        {
+            let scale = height/(this.spin.height + this.storeButton.height + this.storeButton.height)
+            this.scale.set(scale)
+        }
+        if (ratio === 'vertical')
+        {
+            let scale1 = width/(this.spin.width + this.spin.width*0.1)
+            let scale2 = height/(this.spin.height + this.prizeBar.height + this.storeButton.height + this.storeButton.height)
+            let scale
+            if (scale1 > scale2)
+            {
+                scale = scale2
+            } else 
+            {
+                scale = scale1
+            }
+            this.scale.set(scale)
+        }
 
         if (ratio === 'vertical')
         {
             this.spin.x = 0
-            this.spin.y = -this.spin.height/2 - this.prizeBar.height/2
-            this.spinCenter.x = this.spin.x
+            this.spin.y = - this.prizeBar.height/2 - this.storeButton.height/2
+            this.spinCenter.x = 0
             this.spinCenter.y = this.spin.y
             this.prizeBar.y = this.spin.y + this.spin.height/2 + this.prizeBar.height/2
-            this.prizeBar.x = this.spin.x
+            this.prizeBar.x = 0
+            this.storeButton.y = this.prizeBar.y + this.prizeBar.height/2 + this.storeButton.height/1.4
         }
         if (ratio === 'horisontal')
         {
-            this.spin.y = height/2 - this.storeButton.height
-            this.spin.x = width/2 - this.prizeBar.width/2
+            this.spin.y = -this.storeButton.height/2
+            this.spin.x = -this.prizeBar.width/2
             this.spinCenter.y = this.spin.y
             this.spinCenter.x = this.spin.x
             this.prizeBar.y = this.spin.y
             this.prizeBar.x = this.spin.x + this.spin.width/2 + this.prizeBar.width/2
+            this.storeButton.y = this.spin.y + this.spin.height/2 + this.storeButton.height/2
         }
-        
-        if (ratio === 'horisontal')
-        {
-            
-        }
-        if (ratio === 'vertical')
-        {
-            
-        }
-        this.storeButton.y = height - this.storeButton.height/1.5
     }
 }
