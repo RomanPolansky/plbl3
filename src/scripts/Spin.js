@@ -1,12 +1,15 @@
 import TWEEN from '@tweenjs/tween.js'
 import * as PIXI from 'pixi.js'
-import { sprites, app } from './Global'
+import { sprites, app, prizes } from './Global'
 
 export class Spin extends PIXI.Container
 {
     constructor()
     { 
         super()
+
+        this.data = []
+        this.dataNum = []
 
         this.wheel = sprites.wheel
         this.wheel.pivot.x = this.width/2
@@ -34,10 +37,18 @@ export class Spin extends PIXI.Container
             let rand = min - 0.5 + Math.random() * (max - min + 1)
             return Math.round(rand)
         }
-        let newAngle = this.angle + 720 + randomInteger(1, 12)*30
-        new TWEEN.Tween(this).to({angle : newAngle }, 5500).easing(getBackOut(0.7)).start(app.game.time).onComplete(() => {
-            app.eventer.emit('wheelStop')
-        })
+        let newAngle
+        if (app.moveCount === 0) newAngle = this.angle + 720 + randomInteger(1, 4)*90
+        if (app.moveCount === 1) newAngle = this.angle + 720 + randomInteger(1, 4)*90 - 30
+        if (app.moveCount === 2) newAngle = this.angle + 720 + randomInteger(1, 4)*90 - 30
+
+        if (newAngle !== undefined)
+        {
+            new TWEEN.Tween(this).to({angle : newAngle }, 5500).easing(getBackOut(0.7)).start(app.game.time).onComplete(() => {
+                app.eventer.emit('wheelStop')
+            })            
+        }
+        app.moveCount++
     }
     fillWheel()
     {
@@ -116,6 +127,8 @@ export class Spin extends PIXI.Container
         this.addChild(this.puzzle1, this.puzzle2, this.puzzle3, this.puzzle4)
         this.addChild(this.luckyCoin1, this.luckyCoin2)
         this.addChild(this.bingo1, this.bingo2)
+
+        this.data.push(this.coin1, this.coin2, this.coin3, this.coin4, this.puzzle1, this.puzzle2, this.puzzle3, this.puzzle4, this.luckyCoin1, this.luckyCoin2, this.bingo1, this.bingo2)
 
         let textStyle = {
             fontFamily : 'BQ',
@@ -197,5 +210,7 @@ export class Spin extends PIXI.Container
         this.text12.y = this.luckyCoin1.y - 75
 
         this.addChild(this.text1, this.text2, this.text3, this.text4, this.text5, this.text6, this.text7, this.text8, this.text9, this.text10, this.text11, this.text12)
+
+        this.dataNum.push(this.text1, this.text2, this.text3, this.text4, this.text5, this.text6, this.text7, this.text8, this.text9, this.text10, this.text11, this.text12)
     }
 }

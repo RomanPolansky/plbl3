@@ -3,21 +3,48 @@ import { Spin } from './spin'
 import { SpinCenter } from './SpinCenter'
 import { PrizeBar } from './PrizeBar'
 import { StoreButton } from './StoreButton'
+import { sprites, app, prizes } from './Global'
 
+import TWEEN from '@tweenjs/tween.js'
 export class SceneMain extends PIXI.Container
 {
     constructor()
     {
         super()
 
+        this.arrow = sprites.arrow
+        this.arrow.scale.set(0.2)
+        this.arrow.anchor.set(0.5)
         this.spin = new Spin()
         this.spinCenter = new SpinCenter()
         this.prizeBar = new PrizeBar()
         this.storeButton = new StoreButton()
 
-        this.addChild(this.spin, this.spinCenter, this.prizeBar)
+        this.addChild(this.spin, this.spinCenter, this.prizeBar, this.arrow)
         this.addChild(this.storeButton)
 
+        app.eventer.on('wheelStop', () =>{
+            let tElem = this.spin.data[0]
+            this.spin.data.forEach(element => {
+                if (tElem.toGlobal({ x: 0, y: 0}).y > element.toGlobal({ x: 0, y: 0}).y)
+                {
+                    tElem = element
+                }
+            })
+            let tElemNum = this.spin.dataNum[0]
+            this.spin.dataNum.forEach(element => {
+                if (tElemNum.toGlobal({ x: 0, y: 0}).y > element.toGlobal({ x: 0, y: 0}).y)
+                {
+                    tElemNum = element
+                }
+            })
+            
+            if (tElem.type === 'coin') prizes.coin += parseInt(tElemNum.text)
+            if (tElem.type === 'puzzle') prizes.puzzle += parseInt(tElemNum.text)
+            if (tElem.type === 'luckyCoin') prizes.luckyCoin += parseInt(tElemNum.text)
+            if (tElem.type === 'bingo') prizes.bingo += parseInt(tElemNum.text)
+            console.log(prizes)
+        })
     }
     resize(width, height)
     {
@@ -68,5 +95,7 @@ export class SceneMain extends PIXI.Container
             this.prizeBar.x = this.spin.x + this.spin.width/2 + this.prizeBar.width/2
             this.storeButton.y = this.spin.y + this.spin.height/2 + this.storeButton.height/2
         }
+        this.arrow.x = this.spin.x
+        this.arrow.y = this.spin.y - this.spin.height/2 + this.arrow.height/10
     }
 }
