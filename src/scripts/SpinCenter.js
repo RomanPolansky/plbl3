@@ -12,7 +12,6 @@ export class SpinCenter extends PIXI.Container
         
         this.spinCircle = sprites.spinCircle
         this.spinCircle.anchor.set(0.5)
-        this.spinCircle.scale.set(0.6)
 
         this.btnCont = new PIXI.Container()
 

@@ -45,10 +45,8 @@ export class PrizeBar extends PIXI.Container
         this.questionMark2.y = this.rect2.y
         this.questionMark3.y = this.rect3.y
     }
-    resize(width, height)
-    {
-        let ratio = width > height ? 'horisontal' : 'vertical'
-        
+    resize(width, height, ratio)
+    {   
         if (ratio === 'vertical')
         {
             this.rect3.y = 0

@@ -8,15 +8,14 @@ export class StoreButton extends PIXI.Container
     {
         super()
         this.button = sprites.button
-        this.button.scale.set(0.5)
         this.button.anchor.set(0.5)
 
         this.text = new PIXI.Text('PLAY NOW', {
             fontFamily : 'BQ',
-            fontSize: 83,
-            fill: 0x000000,
-            stroke: 0xffffff,
-            strokeThickness: 10,
+            fontSize: 80,
+            fill: 0xffffff,
+            stroke: 0x36930b,
+            strokeThickness: 12,
             align: 'center'
         })
         this.text.anchor.set(0.5)
@@ -27,7 +26,7 @@ export class StoreButton extends PIXI.Container
         this.buttonMode = true
 
         this.on('pointerup', ()=>{
-            console.log(1)
+            console.log('скачать')
         })
     } 
 }

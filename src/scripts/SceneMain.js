@@ -24,9 +24,9 @@ export class SceneMain extends PIXI.Container
         this.x = width/2
         this.y = height/2
 
-        this.prizeBar.resize(width, height)
+        let ratio = width >= height ? 'horisontal' : 'vertical'
 
-        let ratio = width > height ? 'horisontal' : 'vertical'
+        this.prizeBar.resize(width, height, ratio)
 
         if (ratio === 'horisontal')
         {
