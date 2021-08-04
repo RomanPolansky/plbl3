@@ -43,6 +43,7 @@ export class App
         this.deltaTime = this.app.ticker.deltaMS
         this.time += this.deltaTime
         TWEEN.update(this.time)
+        this.bg.update(this.time)
     }
     resize(Width, Height)
     {

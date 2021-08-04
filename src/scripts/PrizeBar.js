@@ -8,27 +8,23 @@ export class PrizeBar extends PIXI.Container
     {
         super()
 
-        this.button = sprites.button        
-        
-        this.rect1 = sprites.rect1
-        this.questionMark1 = sprites.questionMark1
-        this.rect2 = sprites.rect2
-        this.questionMark2 = sprites.questionMark2
-        this.rect3 = sprites.rect3
-        this.questionMark3 = sprites.questionMark3
+        this.elCont = []
+        this.sprites = [ sprites.rect1, sprites.rect2, sprites.rect3 ]
+        this.questionMarks = [ sprites.questionMark1, sprites.questionMark2, sprites.questionMark3 ]
 
-        this.questionMark1.scale.set(1.5)
-        this.questionMark2.scale.set(1.5)
-        this.questionMark3.scale.set(1.5)
+        for (let i = 2; i >= 0; i--)
+        {
+            this.elCont[i] = new PIXI.Container();
+            this.addChild(this.elCont[i]);
 
-        this.qmPosition()
+            this.elCont[i].addChild(this.sprites[i]);
+            this.elCont[i].addChild(this.questionMarks[i]);
 
-        this.addChild(this.rect1, this.rect2, this.rect3)
-        this.addChild(this.questionMark1, this.questionMark2, this.questionMark3)
-
-        this.anim(this.questionMark1)
-        this.anim(this.questionMark2)
-        this.anim(this.questionMark3)
+            this.questionMarks[i].scale.set(1.5)
+            this.questionMarks[i].x = this.sprites[i].x + 7
+            this.questionMarks[i].y = this.sprites[i].y
+            this.anim(this.questionMarks[i])
+        }
     }
   
     anim(item, delay = 0)
@@ -49,21 +45,19 @@ export class PrizeBar extends PIXI.Container
     {   
         if (ratio === 'vertical')
         {
-            this.rect3.y = 0
-            this.rect1.y = 0
+            this.elCont[0].y = 0
+            this.elCont[2].y = 0
 
-            this.rect3.x = this.rect1.width*1.1
-            this.rect1.x = -this.rect1.width*1.1
-
+            this.elCont[0].x = -this.sprites[0].width*1.1
+            this.elCont[2].x = this.sprites[2].width*1.1
         }
         if (ratio === 'horisontal')
         {
-            this.rect3.x = 0
-            this.rect1.x = 0
+            this.elCont[0].x = 0
+            this.elCont[2].x = 0
 
-            this.rect3.y = this.rect1.width*1.1
-            this.rect1.y = -this.rect1.width*1.1
+            this.elCont[0].y = -this.sprites[0].width*1.1
+            this.elCont[2].y = this.sprites[2].width*1.1
         }
-        this.qmPosition()
     }
 }

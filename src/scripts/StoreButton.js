@@ -12,10 +12,10 @@ export class StoreButton extends PIXI.Container
 
         this.text = new PIXI.Text('PLAY NOW', {
             fontFamily : 'BQ',
-            fontSize: 80,
+            fontSize: 70,
             fill: 0xffffff,
             stroke: 0x36930b,
-            strokeThickness: 12,
+            strokeThickness: 10,
             align: 'center'
         })
         this.text.anchor.set(0.5)

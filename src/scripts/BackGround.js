@@ -1,5 +1,6 @@
 import * as PIXI from 'pixi.js'
 import { sprites } from './Global'
+import { p, PerlinNoise } from './PerlinNoise'
 export class BackGround extends PIXI.Container
 {
     constructor()
@@ -10,6 +11,8 @@ export class BackGround extends PIXI.Container
         this.addChild(this.bg)
 
         this.cloud()
+
+        this.perlinNoise = new PerlinNoise(p)
     }
     cloud()
     {
@@ -63,7 +66,7 @@ export class BackGround extends PIXI.Container
         if (!isVertical)
         {
             this.setScaleAll(1)
-            let scale = this.bg.height/(this.cloudLeft1.height + this.cloudLeft5.height + nH) / 1.2
+            let scale = this.bg.height/(this.cloudLeft1.height + this.cloudLeft5.height + nH) / 1.1
             this.setScaleAll(scale)
         }
         if (isVertical)
@@ -81,17 +84,21 @@ export class BackGround extends PIXI.Container
         /*___________________________________Left_________________________________________*/
         this.cloudLeft5.anchor.set(0, 1)
         this.cloudLeft5.y = this.bg.height
+        this.cloudLeft5.x = 0
 
         this.cloudLeft4.anchor.set(0, 1)
         this.cloudLeft4.y = this.cloudLeft5.y - this.cloudLeft5.height
+        this.cloudLeft4.x = 0
         
         this.cloudLeft3.anchor.set(0, 1)
         this.cloudLeft3.y = this.cloudLeft5.y - this.cloudLeft3.height/3
         this.cloudLeft3.x = this.cloudLeft3.width/3
 
         this.cloudLeft1.x = this.cloudLeft1.width/2
+        this.cloudLeft1.y = 0
 
         this.cloudLeft2.y = this.cloudLeft1.y + this.cloudLeft1.height/10
+        this.cloudLeft2.x = 0
 
         this.cloudLeft6.y = this.cloudLeft2.y + this.cloudLeft2.height - this.cloudLeft6.height/2
         this.cloudLeft6.x = this.cloudLeft6.width * 1.3
@@ -103,18 +110,28 @@ export class BackGround extends PIXI.Container
 
         this.cloudRight4.anchor.set(1, 1)
         this.cloudRight4.x = this.cloudRight5.x
-        this.cloudRight4.y = this.cloudRight5.y - this.cloudRight5.height/2
+        this.cloudRight4.y = this.cloudRight5.y - this.cloudRight5.height/1.8
 
         this.cloudRight3.anchor.set(1, 1)
         this.cloudRight3.x = this.cloudRight5.x - this.cloudRight3.width/2.3
-        this.cloudRight3.y = this.cloudRight5.y - this.cloudRight3.height/2
+        this.cloudRight3.y = this.cloudRight5.y - this.cloudRight3.height/1.9
 
         this.cloudRight2.anchor.set(1, 0)
         this.cloudRight2.x = this.bg.width
+        this.cloudRight2.y = -this.amplitudeY
 
         this.cloudRight1.anchor.set(1, 1)
         this.cloudRight1.x = this.cloudRight5.x
         this.cloudRight1.y = this.cloudRight5.y - this.cloudRight5.height/2
+
+        this.cloudArrLeft.forEach(element => {
+            element.startX = element.x;
+            element.startY = element.y;
+        });
+        this.cloudArrRight.forEach(element => {
+            element.startX = element.x;
+            element.startY = element.y;
+        });
     }
     setScaleAll(scale)
     {
@@ -131,15 +148,27 @@ export class BackGround extends PIXI.Container
         this.cloudRight4.scale.set(scale)
         this.cloudRight5.scale.set(scale)
     }
-    startAnim()
+    update(time)
     {
-        this.cloudArrLeft.forEach(element => {})
-        this.cloudArrRight.forEach(element => {})
+        let i = 0;
+        this.cloudArrLeft.forEach(element => {
+            element.x = element.startX - this.perlinNoise.noise(i + 0, time / 1000.0 * 0.1, 0) * this.amplitudeX
+            element.y = element.startY + this.perlinNoise.noise(i + 1, time / 1000.0 * 0.1, 0) * this.amplitudeY
+            i += 2
+        })
+        this.cloudArrRight.forEach(element => {
+            element.x = element.startX + this.perlinNoise.noise(i + 0, time / 1000.0 * 0.1, 0) * this.amplitudeX
+            element.y = element.startY + this.perlinNoise.noise(i + 1, time / 1000.0 * 0.1, 0) * this.amplitudeY
+            i += 2
+        })
     }
     resize(width, height)
     {
         this.bg.width = width
         this.bg.height = height
+
+        this.amplitudeX = width / 18
+        this.amplitudeY = height / 50
 
         this.cloudPosition()
     }
