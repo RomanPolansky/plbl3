@@ -109,5 +109,21 @@ export function loaderAdd() {
         sprites.rect3 = new PIXI.Sprite(resources['game'].textures['rect'])
         sprites.rect3.anchor.set(0.5)
 
+        /* __________________________________________________________________________________ */
+
+        sprites.winCoin         = new PIXI.Sprite(resources['game'].textures['coin'])
+        sprites.winCoin.anchor.set(0.5)
+
+        sprites.winBingo        = new PIXI.Sprite(resources['game'].textures['bingo'])
+        sprites.winBingo.anchor.set(0.5)
+
+        sprites.winLuckyCoin    = new PIXI.Sprite(resources['game'].textures['luckyCoin'])
+        sprites.winLuckyCoin.anchor.set(0.5)
+    
+        sprites.winPuzzle       = new PIXI.Sprite(resources['game'].textures['puzzle'])
+        sprites.winPuzzle.anchor.set(0.5)
+
+        sprites.spark       = new PIXI.Sprite(resources['game'].textures['spark'])
+        sprites.spark.anchor.set(0.5)
     })
 }

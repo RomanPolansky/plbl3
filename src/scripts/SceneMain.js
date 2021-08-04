@@ -2,9 +2,9 @@ import * as PIXI from 'pixi.js'
 import { Spin } from './spin'
 import { SpinCenter } from './SpinCenter'
 import { PrizeBar } from './PrizeBar'
+import { PrizeItem } from './PrizeItem'
 import { StoreButton } from './StoreButton'
 import { sprites, app, prizes } from './Global'
-
 import TWEEN from '@tweenjs/tween.js'
 export class SceneMain extends PIXI.Container
 {
@@ -43,8 +43,13 @@ export class SceneMain extends PIXI.Container
             if (tElem.type === 'puzzle') prizes.puzzle += parseInt(tElemNum.text)
             if (tElem.type === 'luckyCoin') prizes.luckyCoin += parseInt(tElemNum.text)
             if (tElem.type === 'bingo') prizes.bingo += parseInt(tElemNum.text)
+            this.showPrize(tElem.type)
             console.log(prizes)
         })
+        setTimeout(() => {
+            this.showPrize('coin')
+        }, 250);
+        
     }
     resize(width, height)
     {
@@ -97,5 +102,11 @@ export class SceneMain extends PIXI.Container
         }
         this.arrow.x = this.spin.x
         this.arrow.y = this.spin.y - this.spin.height/2 + this.arrow.height/10
+    }
+    showPrize(type, num)
+    {
+        let prizeItem = new PrizeItem(type, num)
+        this.addChild(prizeItem)
+        prizeItem.moveTo(this.prizeBar.x, this.prizeBar.y)
     }
 }

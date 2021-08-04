@@ -44,7 +44,7 @@ export class SpinCenter extends PIXI.Container
     }
     click()
     {
-        if (!this.isClicked)
+        if (!this.isClicked && app.moveCount < 3)
         {
             this.isClicked = true
             new Tween(this.btnCont).to({scale : { x: 0.87, y: 0.87} }, 200).yoyo(true).repeat(1).start(app.game.time).onComplete(() => {
