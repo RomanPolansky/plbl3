@@ -48,7 +48,6 @@ export class Spin extends PIXI.Container
                 app.eventer.emit('wheelStop')
             })            
         }
-        app.moveCount++
     }
     fillWheel()
     {

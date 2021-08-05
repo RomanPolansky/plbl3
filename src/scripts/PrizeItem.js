@@ -34,13 +34,14 @@ export class PrizeItem extends PIXI.Container
         this.sprite.scale.set(0)
         this.spark.scale.set(0)
         this.spark.alpha = 0
+        this.spark.angle = 0
         this.text.scale.set(0)
 
-        this.spriteScale = 1.75
+        this.spriteScale = 1.9
         if (type === 'puzzle') this.spriteScale /= 1.3
 
         new TWEEN.Tween(this.spark).to({ angle : 360 }, 4000).repeat(Infinity).start(app.game.time)
-        new TWEEN.Tween(this.spark).to({scale : { x : 1.5, y : 1.5 }, alpha : 0.5  }, 350).easing(TWEEN.Easing.Back.Out).start(app.game.time)
+        new TWEEN.Tween(this.spark).to({scale : { x : 2.5, y : 2.5 }, alpha : 1 }, 350).easing(TWEEN.Easing.Back.Out).start(app.game.time)
         new TWEEN.Tween(this.sprite).to({scale : { x : this.spriteScale, y : this.spriteScale } }, 1000).easing(TWEEN.Easing.Back.Out).start(app.game.time)
         new TWEEN.Tween(this.text).to({scale : { x : 1, y : 1 } }, 1000).delay(150).easing(TWEEN.Easing.Back.Out).start(app.game.time).onComplete(()=>{
             new TWEEN.Tween(this.spark).to({ scale : { x : 0, y : 0 }, alpha : 0 }, 350).start(app.game.time)
@@ -52,6 +53,7 @@ export class PrizeItem extends PIXI.Container
     }
     moveToBar()
     {
+        app.moveCount++
         let targetElCont = this.bar.elCont[app.moveCount-1];
         let position = this.toGlobal(new PIXI.Point(0, 0));
         targetElCont.addChild(this);
@@ -62,5 +64,6 @@ export class PrizeItem extends PIXI.Container
         new TWEEN.Tween(this).to({ scale : { x : 0.7, y : 0.7 } }, 200).start(app.game.time)
 
         new TWEEN.Tween(targetElCont.children[1]).to({ alpha : 0 }, 200).start(app.game.time)
+        app.eventer.emit('gotPrize')
     }
 }

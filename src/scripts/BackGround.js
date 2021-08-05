@@ -1,5 +1,6 @@
+import { Tween } from '@tweenjs/tween.js'
 import * as PIXI from 'pixi.js'
-import { sprites } from './Global'
+import { app, sprites } from './Global'
 import { p, PerlinNoise } from './PerlinNoise'
 export class BackGround extends PIXI.Container
 {
@@ -60,19 +61,36 @@ export class BackGround extends PIXI.Container
     }
     cloudPosition()
     {
-        let isVertical; this.bg.height>this.bg.width ? isVertical=true : isVertical=false
+        let ratio;
+        if (this.bg.height/this.bg.width > 1)
+        {
+            ratio = 'vertical'
+        }else 
+        if (this.bg.width/this.bg.height < 1.1)
+        {
+            ratio = 'rectangle'
+        }else
+        {
+            ratio = 'horisontal'
+        } 
        
         const nH = 250
-        if (!isVertical)
+        if (ratio === 'horisontal')
+        {
+            this.setScaleAll(1)
+            let scale = this.bg.height/(this.cloudLeft1.height + this.cloudLeft5.height + nH) / 1.3
+            this.setScaleAll(scale)
+        }
+        if (ratio === 'rectangle')
         {
             this.setScaleAll(1)
             let scale = this.bg.height/(this.cloudLeft1.height + this.cloudLeft5.height + nH) / 1.1
             this.setScaleAll(scale)
         }
-        if (isVertical)
+        if (ratio === 'vertical')
         {
             this.setScaleAll(1)
-            let scale = this.bg.width/(this.cloudLeft5.width + this.cloudRight5.width) * 1.1
+            let scale = this.bg.width/(this.cloudLeft5.width + this.cloudRight5.width) * 0
             this.setScaleAll(scale)
         }
         if (this.bg.width - this.bg.height < this.bg.width/7)
@@ -118,11 +136,11 @@ export class BackGround extends PIXI.Container
 
         this.cloudRight2.anchor.set(1, 0)
         this.cloudRight2.x = this.bg.width
-        this.cloudRight2.y = -this.amplitudeY
+        this.cloudRight2.y = -this.amplitudeY*3
 
         this.cloudRight1.anchor.set(1, 1)
-        this.cloudRight1.x = this.cloudRight5.x
-        this.cloudRight1.y = this.cloudRight5.y - this.cloudRight5.height/2
+        this.cloudRight1.x = this.cloudRight5.x + this.cloudRight1.width/4
+        this.cloudRight1.y = this.cloudRight5.y - this.cloudRight5.height/1.5
 
         this.cloudArrLeft.forEach(element => {
             element.startX = element.x;
@@ -154,20 +172,58 @@ export class BackGround extends PIXI.Container
         this.cloudArrLeft.forEach(element => {
             element.x = element.startX - this.perlinNoise.noise(i + 0, time / 1000.0 * 0.1, 0) * this.amplitudeX
             element.y = element.startY + this.perlinNoise.noise(i + 1, time / 1000.0 * 0.1, 0) * this.amplitudeY
-            i += 2
+            i += 4
         })
         this.cloudArrRight.forEach(element => {
             element.x = element.startX + this.perlinNoise.noise(i + 0, time / 1000.0 * 0.1, 0) * this.amplitudeX
             element.y = element.startY + this.perlinNoise.noise(i + 1, time / 1000.0 * 0.1, 0) * this.amplitudeY
-            i += 2
+            i += 4
         })
+    }
+    animation(time, delay)
+    {
+        let arr1 = this.cloudArrLeft
+        let arr2 = this.cloudArrRight
+        for (let i = 0; i < arr1.length; i++)
+        {
+            new Tween(arr1[i]).to({ scale : { x : arr1[i].scale.x*1.1 ,y : arr1[i].scale.y*1.1 } }, time).delay(delay).start(app.game.time)
+            if (i > 0 && i !== arr1.length-1)
+            {
+                new Tween(arr1[i]).to({ startX : arr1[i].startX - arr1[i].width/7 }, time).delay(delay).start(app.game.time)
+                new Tween(arr1[i]).to({ startY : arr1[i].startY + arr1[i].height/10 }, time).delay(delay).start(app.game.time)
+            }
+            if (i == 0)
+            {
+                new Tween(arr1[i]).to({ startX : arr1[i].startX - arr1[i].width/10 }, time).delay(delay).start(app.game.time)
+                new Tween(arr1[i]).to({ startY : arr1[i].startY + arr1[i].height/12 }, time).delay(delay).start(app.game.time)
+            }
+            if (i == 5)
+            {
+                new Tween(arr1[i]).to({ startX : arr1[i].startX - arr1[i].width/7 }, time).delay(delay).start(app.game.time)
+                new Tween(arr1[i]).to({ startY : arr1[i].startY + arr1[i].height }, time).delay(delay).start(app.game.time)
+            }
+        }
+        for (let i = 0; i < arr2.length; i++)
+        {
+            new Tween(arr2[i]).to({ scale : { x : arr2[i].scale.x*1.1 ,y : arr2[i].scale.y*1.1 } }, time).delay(delay).start(app.game.time)
+            if (i !== 1)
+            { 
+                new Tween(arr2[i]).to({ startX : arr2[i].startX + arr2[i].width/5 }, time).delay(delay).start(app.game.time)
+                new Tween(arr2[i]).to({ startY : arr2[i].startY + arr2[i].height/10 }, time).delay(delay).start(app.game.time)
+            }
+            if (i == 1)
+            {
+                new Tween(arr2[i]).to({ startX : arr2[i].startX + arr2[i].width/5 }, time).delay(delay).start(app.game.time)
+                new Tween(arr2[i]).to({ startY : arr2[i].startY + arr2[i].height/12 }, time).delay(delay).start(app.game.time)
+            }
+        }
     }
     resize(width, height)
     {
         this.bg.width = width
         this.bg.height = height
 
-        this.amplitudeX = width / 18
+        this.amplitudeX = width / 14
         this.amplitudeY = height / 50
 
         this.cloudPosition()

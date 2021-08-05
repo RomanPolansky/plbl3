@@ -5,11 +5,18 @@ import { PrizeBar } from './PrizeBar'
 import { PrizeItem } from './PrizeItem'
 import { StoreButton } from './StoreButton'
 import { sprites, app, prizes } from './Global'
+import { Tween } from '@tweenjs/tween.js'
 export class SceneMain extends PIXI.Container
 {
     constructor()
     {
         super()
+        this.fadeRect = new PIXI.Graphics()
+        this.fadeRect.beginFill(0)
+        this.fadeRect.drawRect(0, 0, 100, 100)
+        this.fadeRect.pivot.set(50, 50)
+        this.fadeRect.scale.set(25, 15)
+        this.fadeRect.alpha = 0
 
         this.arrow = sprites.arrow
         this.arrow.scale.set(0.2)
@@ -17,10 +24,10 @@ export class SceneMain extends PIXI.Container
         this.spin = new Spin()
         this.spinCenter = new SpinCenter()
         this.prizeBar = new PrizeBar()
-        this.storeButton = new StoreButton()
-
+        this.storeButton = new StoreButton(sprites.button1)
+        
         this.addChild(this.spin, this.spinCenter, this.prizeBar, this.arrow)
-        this.addChild(this.storeButton)
+        this.addChild(this.storeButton, this.fadeRect)
 
         app.eventer.on('wheelStop', () =>{
             let tElem = this.spin.data[0]
@@ -44,8 +51,14 @@ export class SceneMain extends PIXI.Container
             if (tElem.type === 'bingo') prizes.bingo += parseInt(tElemNum.text)
 
             this.showPrize(tElem.type, tElemNum.text)
-            console.log(prizes)
         })
+        // setTimeout(() => {
+        //     this.fade()
+        // }, 450);
+    }
+    unShow(delay = 0)
+    {
+        new Tween(this).to({ scale : { x : this.scale.x*3, y: this.scale.y*3 }, alpha : 0 }, 300).delay(delay).start(app.game.time)
     }
     resize(width, height)
     {
@@ -101,8 +114,15 @@ export class SceneMain extends PIXI.Container
         this.arrow.x = this.spin.x
         this.arrow.y = this.spin.y - this.spin.height/2 + this.arrow.height/10
     }
+    fade()
+    {
+        new Tween(this.fadeRect).to({ alpha : 0.8 }, 300).start(app.game.time).onComplete(()=>{
+            new Tween(this.fadeRect).to({ alpha : 0 }, 300).delay(700).start(app.game.time)
+        })
+    }
     showPrize(type, num)
     {
+        this.fade()
         let prizeItem = new PrizeItem(type, num, this.prizeBar)
         this.addChild(prizeItem)
     }

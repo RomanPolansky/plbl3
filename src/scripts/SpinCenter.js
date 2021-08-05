@@ -34,7 +34,7 @@ export class SpinCenter extends PIXI.Container
             this.click()
         })
 
-        app.eventer.on('wheelStop', () => {
+        app.eventer.on('gotPrize', () => {
             this.isClicked = false
         })
     }
