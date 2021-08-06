@@ -60,8 +60,8 @@ export class PrizeItem extends PIXI.Container
         position = targetElCont.toLocal(position);
         this.x = position.x;
         this.y = position.y;
-        new TWEEN.Tween(this).to({ x : 0, y : 0 }, 200).start(app.game.time)
-        new TWEEN.Tween(this).to({ scale : { x : 0.7, y : 0.7 } }, 200).start(app.game.time)
+        new TWEEN.Tween(this).to({ x : 0, y : 0 }, 200).easing(TWEEN.Easing.Quadratic.Out).start(app.game.time)
+        new TWEEN.Tween(this).to({ scale : { x : 0.65, y : 0.65 } }, 300).easing(TWEEN.Easing.Back.Out).start(app.game.time)
 
         new TWEEN.Tween(targetElCont.children[1]).to({ alpha : 0 }, 200).start(app.game.time)
         app.eventer.emit('gotPrize')

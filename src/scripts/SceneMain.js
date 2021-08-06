@@ -25,6 +25,7 @@ export class SceneMain extends PIXI.Container
         this.spinCenter = new SpinCenter()
         this.prizeBar = new PrizeBar()
         this.storeButton = new StoreButton(sprites.button1)
+        this.storeButton.animation()
         
         this.addChild(this.spin, this.spinCenter, this.prizeBar, this.arrow)
         this.addChild(this.storeButton, this.fadeRect)

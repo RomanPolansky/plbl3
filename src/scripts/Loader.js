@@ -28,11 +28,19 @@ export function loaderAdd() {
         sprites.cloudLeft4   = new PIXI.Sprite(resources['cloud'].textures['left_4'])
         sprites.cloudLeft5   = new PIXI.Sprite(resources['cloud'].textures['left_5'])
         sprites.cloudLeft6   = new PIXI.Sprite(resources['cloud'].textures['left_6'])
+
+        sprites.cloudLeft7  = new PIXI.Sprite(resources['cloud'].textures['left_1'])
+        sprites.cloudLeft8  = new PIXI.Sprite(resources['cloud'].textures['left_1'])
+
         sprites.cloudRight1  = new PIXI.Sprite(resources['cloud'].textures['right_1'])
         sprites.cloudRight2  = new PIXI.Sprite(resources['cloud'].textures['right_2'])
         sprites.cloudRight3  = new PIXI.Sprite(resources['cloud'].textures['right_3'])
         sprites.cloudRight4  = new PIXI.Sprite(resources['cloud'].textures['right_4'])
         sprites.cloudRight5  = new PIXI.Sprite(resources['cloud'].textures['right_5'])
+
+        sprites.cloudRight6  = new PIXI.Sprite(resources['cloud'].textures['left_4'])
+        sprites.cloudRight7  = new PIXI.Sprite(resources['cloud'].textures['left_1'])
+        sprites.cloudRight8  = new PIXI.Sprite(resources['cloud'].textures['right_4'])
 
         /* __________________________________________________________________________________ */
         sprites.bingo1 = new PIXI.Sprite(resources['game'].textures['bingo'])
@@ -86,7 +94,7 @@ export function loaderAdd() {
 
         sprites.arrow        = new PIXI.Sprite(resources['game'].textures['arrow'])
         sprites.wheel        = new PIXI.Sprite(resources['game'].textures['wheel'])
-        sprites.button1       = new PIXI.Sprite(resources['game'].textures['button'])
+        sprites.button1      = new PIXI.Sprite(resources['game'].textures['buttonShadow'])
         sprites.button2      = new PIXI.Sprite(resources['game'].textures['button'])
         sprites.circleBar    = new PIXI.Sprite(resources['game'].textures['circleBar'])
         sprites.playBtn      = new PIXI.Sprite(resources['game'].textures['playBtn'])
