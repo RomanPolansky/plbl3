@@ -2,7 +2,7 @@
 
 "arrow":
 {
-	"frame": {"x":1,"y":723,"w":268,"h":539},
+	"frame": {"x":651,"y":1237,"w":268,"h":539},
 	"rotated": true,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":268,"h":539},
@@ -10,15 +10,15 @@
 },
 "ball":
 {
-	"frame": {"x":1608,"y":654,"w":81,"h":80},
-	"rotated": false,
+	"frame": {"x":1086,"y":1875,"w":81,"h":80},
+	"rotated": true,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":81,"h":80},
 	"sourceSize": {"w":81,"h":80}
 },
 "bingo":
 {
-	"frame": {"x":1604,"y":420,"w":116,"h":113},
+	"frame": {"x":968,"y":1119,"w":116,"h":113},
 	"rotated": true,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":116,"h":113},
@@ -26,7 +26,7 @@
 },
 "button":
 {
-	"frame": {"x":1088,"y":665,"w":518,"h":133},
+	"frame": {"x":651,"y":1507,"w":518,"h":133},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":518,"h":133},
@@ -34,23 +34,39 @@
 },
 "buttonShadow":
 {
-	"frame": {"x":1088,"y":800,"w":506,"h":152},
+	"frame": {"x":706,"y":657,"w":506,"h":152},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":6,"y":22,"w":506,"h":152},
 	"sourceSize": {"w":518,"h":174}
 },
+"chest":
+{
+	"frame": {"x":1,"y":574,"w":661,"h":703},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":661,"h":703},
+	"sourceSize": {"w":661,"h":703}
+},
+"chestStar":
+{
+	"frame": {"x":974,"y":1875,"w":110,"h":105},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":110,"h":105},
+	"sourceSize": {"w":110,"h":105}
+},
 "circleBar":
 {
-	"frame": {"x":1457,"y":351,"w":145,"h":144},
-	"rotated": false,
+	"frame": {"x":822,"y":1076,"w":145,"h":144},
+	"rotated": true,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":145,"h":144},
 	"sourceSize": {"w":145,"h":144}
 },
 "coin":
 {
-	"frame": {"x":1457,"y":538,"w":114,"h":113},
+	"frame": {"x":1079,"y":993,"w":114,"h":113},
 	"rotated": true,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":114,"h":113},
@@ -58,15 +74,23 @@
 },
 "hand":
 {
-	"frame": {"x":542,"y":723,"w":263,"h":221},
+	"frame": {"x":706,"y":811,"w":263,"h":221},
 	"rotated": true,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":263,"h":221},
 	"sourceSize": {"w":263,"h":221}
 },
+"light":
+{
+	"frame": {"x":723,"y":235,"w":458,"h":420},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":458,"h":420},
+	"sourceSize": {"w":458,"h":420}
+},
 "logo":
 {
-	"frame": {"x":1224,"y":1,"w":472,"h":232},
+	"frame": {"x":723,"y":1,"w":472,"h":232},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":1,"y":3,"w":472,"h":232},
@@ -74,7 +98,7 @@
 },
 "luckyCoin":
 {
-	"frame": {"x":1572,"y":538,"w":114,"h":113},
+	"frame": {"x":1083,"y":1109,"w":114,"h":113},
 	"rotated": true,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":114,"h":113},
@@ -83,14 +107,14 @@
 "packshotBlock":
 {
 	"frame": {"x":1,"y":1,"w":571,"h":720},
-	"rotated": false,
+	"rotated": true,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":571,"h":720},
 	"sourceSize": {"w":571,"h":720}
 },
 "playBtn":
 {
-	"frame": {"x":1608,"y":235,"w":109,"h":124},
+	"frame": {"x":968,"y":993,"w":109,"h":124},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":15,"y":0,"w":109,"h":124},
@@ -98,15 +122,15 @@
 },
 "puzzle":
 {
-	"frame": {"x":1457,"y":235,"w":114,"h":149},
-	"rotated": true,
+	"frame": {"x":706,"y":1076,"w":114,"h":149},
+	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":114,"h":149},
 	"sourceSize": {"w":114,"h":149}
 },
 "questionMark":
 {
-	"frame": {"x":1608,"y":361,"w":57,"h":87},
+	"frame": {"x":1,"y":1901,"w":57,"h":87},
 	"rotated": true,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":57,"h":87},
@@ -114,15 +138,15 @@
 },
 "rect":
 {
-	"frame": {"x":1224,"y":235,"w":181,"h":180},
-	"rotated": true,
+	"frame": {"x":968,"y":811,"w":181,"h":180},
+	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":181,"h":180},
 	"sourceSize": {"w":181,"h":180}
 },
 "spark":
 {
-	"frame": {"x":765,"y":665,"w":321,"h":331},
+	"frame": {"x":651,"y":1642,"w":321,"h":331},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":1,"y":0,"w":321,"h":331},
@@ -130,15 +154,15 @@
 },
 "spinCircle":
 {
-	"frame": {"x":1224,"y":420,"w":232,"h":231},
-	"rotated": true,
+	"frame": {"x":974,"y":1642,"w":232,"h":231},
+	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":232,"h":231},
 	"sourceSize": {"w":232,"h":231}
 },
 "wheel":
 {
-	"frame": {"x":574,"y":1,"w":648,"h":662},
+	"frame": {"x":1,"y":1237,"w":648,"h":662},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":1,"y":1,"w":648,"h":662},
@@ -149,8 +173,8 @@
 	"version": "1.0",
 	"image": "ss1.png",
 	"format": "RGBA8888",
-	"size": {"w":1718,"h":997},
+	"size": {"w":1213,"h":1981},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:2c7e50abffb41a790c938011c68ead84:5152b295445c8a3e2a2571af7b1c4c19:992a2f838520112821f25f5202ac86bd$"
+	"smartupdate": "$TexturePacker:SmartUpdate:71707ab1758c91cb5f9434ff627b7e53:be676eed78bade74e7c53b55bb86ec24:992a2f838520112821f25f5202ac86bd$"
 }
 }

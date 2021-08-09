@@ -37,10 +37,10 @@ export class SpinCenter extends PIXI.Container
         app.eventer.on('gotPrize', () => {
             this.isClicked = false
         })
-    }
-    btnAnim()
-    {
-        new Tween(this.btnCont).to({scale : { x: 1.1, y: 1.1} }, 400).yoyo(true).repeat(Infinity).start(app.game.time)
+
+        setTimeout(() => {
+            new Tween(this.btnCont).to({scale : { x: 1.15, y: 1.15} }, 250).yoyo(true).repeat(3).start(app.game.time)
+        }, 200);
     }
     click()
     {
