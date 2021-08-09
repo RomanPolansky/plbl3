@@ -9,6 +9,7 @@ export class Clouds extends PIXI.Container
     {
         super()
         this.bg = bg
+        this.fix = false
         this.sortableChildren = true
         this.cloud()
         this.perlinNoise = new PerlinNoise(p)
@@ -222,39 +223,37 @@ export class Clouds extends PIXI.Container
     }
     animation(time, delay)
     {
+        this.fix = true
         let arr1 = this.cloudArrLeft
         let arr2 = this.cloudArrRight
         for (let i = 0; i < arr1.length; i++)
         {
-            new Tween(arr1[i]).to({ scale : { x : arr1[i].scale.x*1.1 ,y : arr1[i].scale.y*1.1 } }, time).delay(delay).start(app.game.time)
-            if (i > 0 && i !== arr1.length-1)
+            new Tween(arr1[i]).to({ scale : { x : arr1[i].scale.x*1.15 ,y : arr1[i].scale.y*1.15 } }, time).delay(delay).start(app.game.time)
+            if (i == 0 || i == 1 || i == 5 || i == 6)
             {
-                new Tween(arr1[i]).to({ startX : arr1[i].startX - arr1[i].width/7 }, time).delay(delay).start(app.game.time)
-                new Tween(arr1[i]).to({ startY : arr1[i].startY + arr1[i].height/10 }, time).delay(delay).start(app.game.time)
-            }
-            if (i == 0)
+                new Tween(arr1[i]).to({ startX : arr1[i].startX - arr1[i].width/3 }, time).delay(delay).start(app.game.time)
+                new Tween(arr1[i]).to({ startY : arr1[i].startY - arr1[i].height/3 }, time).delay(delay).start(app.game.time)
+            } else
             {
-                new Tween(arr1[i]).to({ startX : arr1[i].startX - arr1[i].width/10 }, time).delay(delay).start(app.game.time)
-                new Tween(arr1[i]).to({ startY : arr1[i].startY + arr1[i].height/12 }, time).delay(delay).start(app.game.time)
-            }
-            if (i == 5)
-            {
-                new Tween(arr1[i]).to({ startX : arr1[i].startX - arr1[i].width/7 }, time).delay(delay).start(app.game.time)
-                new Tween(arr1[i]).to({ startY : arr1[i].startY + arr1[i].height }, time).delay(delay).start(app.game.time)
+                new Tween(arr1[i]).to({ startX : arr1[i].startX - arr1[i].width/3 }, time).delay(delay).start(app.game.time)
+                new Tween(arr1[i]).to({ startY : arr1[i].startY + arr1[i].height/3 }, time).delay(delay).start(app.game.time)
             }
         }
         for (let i = 0; i < arr2.length; i++)
         {
-            new Tween(arr2[i]).to({ scale : { x : arr2[i].scale.x*1.1 ,y : arr2[i].scale.y*1.1 } }, time).delay(delay).start(app.game.time)
-            if (i !== 1)
-            { 
-                new Tween(arr2[i]).to({ startX : arr2[i].startX + arr2[i].width/5 }, time).delay(delay).start(app.game.time)
-                new Tween(arr2[i]).to({ startY : arr2[i].startY + arr2[i].height/10 }, time).delay(delay).start(app.game.time)
-            }
-            if (i == 1)
+            new Tween(arr2[i]).to({ scale : { x : arr2[i].scale.x*1.15 ,y : arr2[i].scale.y*1.15 } }, time).delay(delay).start(app.game.time)
+            if (i == 1 || i == 5)
             {
-                new Tween(arr2[i]).to({ startX : arr2[i].startX + arr2[i].width/5 }, time).delay(delay).start(app.game.time)
-                new Tween(arr2[i]).to({ startY : arr2[i].startY + arr2[i].height/12 }, time).delay(delay).start(app.game.time)
+                new Tween(arr2[i]).to({ startX : arr2[i].startX + arr2[i].width/3 }, time).delay(delay).start(app.game.time)
+                new Tween(arr2[i]).to({ startY : arr2[i].startY - arr2[i].height/3 }, time).delay(delay).start(app.game.time)
+            } else 
+            if (i == 7)
+            {
+                new Tween(arr2[i]).to({ startY : arr2[i].startY - arr2[i].height/3.5 }, time).delay(delay).start(app.game.time)
+            } else
+            {
+                new Tween(arr2[i]).to({ startX : arr2[i].startX + arr2[i].width/3 }, time).delay(delay).start(app.game.time)
+                new Tween(arr2[i]).to({ startY : arr2[i].startY + arr2[i].height/3 }, time).delay(delay).start(app.game.time)
             }
         }
     }
@@ -285,9 +284,20 @@ export class Clouds extends PIXI.Container
     {
         this.amplitudeX = width / 8
         this.amplitudeY = height / 19
-
         this.cloudPosition()
-        
         if (this.scenePS !== undefined) this.scenePS.resize(width, height)
+
+        if (this.fix)
+        {
+            setTimeout(() => {
+                this.cloudPosition()
+            }, 310)
+            setTimeout(() => {
+                this.cloudPosition()
+            }, 620)
+            setTimeout(() => {
+                this.cloudPosition()
+            }, 930)
+        }
     }
 }

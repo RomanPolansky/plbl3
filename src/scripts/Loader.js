@@ -2,6 +2,7 @@ import * as PIXI from 'pixi.js'
 import { cloudSS, cloudJSON, gameSS, gameJSON, bg } from './spriteData'
 import { sprites } from './Global'
 
+export const myLoader = PIXI.Loader.shared
 export function loaderAdd() {
     const baseTextureBG = new PIXI.BaseTexture(cloudSS)
     const spritesheetBG = new PIXI.Spritesheet(baseTextureBG, cloudJSON)
@@ -9,8 +10,6 @@ export function loaderAdd() {
     const baseTextureGP = new PIXI.BaseTexture(gameSS)
     const spritesheetGP = new PIXI.Spritesheet(baseTextureGP, gameJSON)
     const bgTexture = new PIXI.BaseTexture(bg)
-
-    const myLoader = PIXI.Loader.shared
  
     myLoader.resources['cloud'] = spritesheetBG
     myLoader.resources['game'] = spritesheetGP
@@ -99,6 +98,7 @@ export function loaderAdd() {
         sprites.circleBar    = new PIXI.Sprite(resources['game'].textures['circleBar'])
         sprites.playBtn      = new PIXI.Sprite(resources['game'].textures['playBtn'])
         sprites.spinCircle   = new PIXI.Sprite(resources['game'].textures['spinCircle'])
+        sprites.hand         = new PIXI.Sprite(resources['game'].textures['hand'])
         
         sprites.questionMark1 = new PIXI.Sprite(resources['game'].textures['questionMark'])
         sprites.questionMark1.anchor.set(0.5)

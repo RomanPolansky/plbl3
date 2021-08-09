@@ -1,5 +1,6 @@
 import * as PIXI from 'pixi.js'
 import { sprites, app, prizes } from './Global'
+import { myLoader } from './Loader'
 import TWEEN from '@tweenjs/tween.js'
 
 export class PrizeItem extends PIXI.Container
@@ -7,6 +8,8 @@ export class PrizeItem extends PIXI.Container
     constructor(type, num, bar)
     {
         super()
+
+        this.sortableChildren = true
 
         this.bar = bar
         this.prizeArr = []
@@ -27,6 +30,10 @@ export class PrizeItem extends PIXI.Container
             align: 'center'
         })
         this.text.anchor.set(0.5)
+
+        this.spark.zIndex = 1
+        this.sprite.zIndex = 2
+        this.text.zIndex = 3
 
         this.text.y = this.text.height*1.18
         this.spark.y = this.sprite.y
@@ -62,8 +69,28 @@ export class PrizeItem extends PIXI.Container
         this.y = position.y;
         new TWEEN.Tween(this).to({ x : 0, y : 0 }, 200).easing(TWEEN.Easing.Quadratic.Out).start(app.game.time)
         new TWEEN.Tween(this).to({ scale : { x : 0.65, y : 0.65 } }, 300).easing(TWEEN.Easing.Back.Out).start(app.game.time)
-
+        this.particle(180)
         new TWEEN.Tween(targetElCont.children[1]).to({ alpha : 0 }, 200).start(app.game.time)
         app.eventer.emit('gotPrize')
+    }
+    particle(delay)
+    {
+        for (let i = 0; i < 40; i++)
+        {
+            this.ball = new PIXI.Sprite(myLoader.resources['game'].textures['ball'])
+            this.ball.zIndex = 0
+            this.ball.anchor.set(0.5)
+            this.ball.scale.set(0.6)
+            this.addChild(this.ball)
+
+            let vectorX = 1
+            let vectorY = 1
+            if (Math.random() > 0.44) vectorX = -1
+            if (Math.random() > 0.44) vectorY = -1
+            let xPos = (70 + 80*Math.random()) * (0.1 + Math.random()) * vectorX
+            let yPos = (70 + 80*Math.random()) * (0.1 + Math.random()) * vectorY
+            new TWEEN.Tween(this.ball).to({ x : xPos, y : yPos, scale:{x:0.3,y:0.3} }, 200).delay(delay + 5*i).easing(TWEEN.Easing.Quadratic.Out).start(app.game.time)
+            new TWEEN.Tween(this.ball).to({ alpha : 0 }, 220).delay(delay + 7*i).easing(TWEEN.Easing.Quadratic.Out).start(app.game.time)
+        }
     }
 }

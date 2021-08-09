@@ -3,7 +3,6 @@ import * as PIXI from 'pixi.js'
 import { BackGround } from './BackGround'
 import { Clouds } from './Clounds'
 import { SceneMain } from './SceneMain'
-import { ScenePS } from './ScenePS'
 import { app } from './Global'
 export class App
 {
@@ -48,10 +47,10 @@ export class App
        this.resize(window.innerWidth, window.innerHeight)
 
         app.eventer.on('gotPrize', ()=>{
-            if (app.moveCount === 1)
+            if (app.moveCount === 3)
             {
                 this.sceneMain.unShow(750)
-                this.clouds.animation(900, 800)
+                this.clouds.animation(900, 700)
                 this.clouds.goToPS(900)
             }
         })

@@ -23,8 +23,8 @@ export class ScenePS extends PIXI.Container
             fontFamily : 'BQ',
             fontSize: 50,
             fill: 0xffffff,
-            stroke: 0x009acf,
-            strokeThickness: 4.5,
+            stroke: 0x0066cf,
+            strokeThickness: 5,
             align: 'center'
         })
         this.text.anchor.set(0.5)
@@ -34,7 +34,7 @@ export class ScenePS extends PIXI.Container
             fontFamily : 'BQ',
             fontSize: 50,
             fill: 0xffffff,
-            stroke: 0x009acf,
+            stroke: 0x0066cf,
             strokeThickness: 9,
             align: 'center'
         }
@@ -43,9 +43,6 @@ export class ScenePS extends PIXI.Container
 
         this.addChild(this.container)
         this.container.scale.set(0.15)
-        // setTimeout(() => {
-        //     this.show()
-        // }, 500);
     }
     initPrize()
     {
@@ -103,11 +100,16 @@ export class ScenePS extends PIXI.Container
             value2 : 0,
             value3 : 0
         }
-        new TWEEN.Tween(this.prize1).to({ scale : { x : 1, y: 1 } }, 200).easing(TWEEN.Easing.Back.Out).start(app.game.time)
+        let getBackOut = (s) => {
+            return function(t) {
+                return --t * t * ((s + 1) * t + s) + 1
+            }
+        }
+        new TWEEN.Tween(this.prize1).to({ scale : { x : 1, y: 1 } }, 300).easing(getBackOut(4)).start(app.game.time)
         new TWEEN.Tween(this.prizeText1).to({ scale : { x : 1, y: 1 } }, 200).start(app.game.time).onComplete(()=>{
-            new TWEEN.Tween(this.prize2).to({ scale : { x : 1, y: 1 } }, 200).easing(TWEEN.Easing.Back.Out).start(app.game.time)
+            new TWEEN.Tween(this.prize2).to({ scale : { x : 1, y: 1 } }, 300).easing(getBackOut(4)).start(app.game.time)
             new TWEEN.Tween(this.prizeText2).to({ scale : { x : 1, y: 1 } }, 200).start(app.game.time).onComplete(()=>{
-                new TWEEN.Tween(this.prize3).to({ scale : { x : 1, y: 1 } }, 200).easing(TWEEN.Easing.Back.Out).start(app.game.time)
+                new TWEEN.Tween(this.prize3).to({ scale : { x : 1, y: 1 } }, 300).easing(getBackOut(4)).start(app.game.time)
                 new TWEEN.Tween(this.prizeText3).to({ scale : { x : 1, y: 1 } }, 200).start(app.game.time).onComplete(()=>{
                     
                 })
