@@ -47,6 +47,7 @@ export class SpinCenter extends PIXI.Container
         if (!this.isClicked && app.moveCount < 3)
         {
             this.isClicked = true
+            app.eventer.emit('spinClick')
             new Tween(this.btnCont).to({scale : { x: 0.87, y: 0.87} }, 200).yoyo(true).repeat(1).start(app.game.time).onComplete(() => {
                 app.eventer.emit('wheelStart')
             })

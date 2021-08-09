@@ -1,5 +1,5 @@
 import * as PIXI from 'pixi.js'
-import { sprites, app, prizes } from './Global'
+import { sprites, app } from './Global'
 import { myLoader } from './Loader'
 import TWEEN from '@tweenjs/tween.js'
 
@@ -75,22 +75,22 @@ export class PrizeItem extends PIXI.Container
     }
     particle(delay)
     {
-        for (let i = 0; i < 40; i++)
+        for (let i = 0; i < 100; i++)
         {
             this.ball = new PIXI.Sprite(myLoader.resources['game'].textures['ball'])
             this.ball.zIndex = 0
             this.ball.anchor.set(0.5)
-            this.ball.scale.set(0.6)
+            this.ball.scale.set(0.7)
             this.addChild(this.ball)
 
             let vectorX = 1
             let vectorY = 1
             if (Math.random() > 0.44) vectorX = -1
             if (Math.random() > 0.44) vectorY = -1
-            let xPos = (70 + 80*Math.random()) * (0.1 + Math.random()) * vectorX
-            let yPos = (70 + 80*Math.random()) * (0.1 + Math.random()) * vectorY
-            new TWEEN.Tween(this.ball).to({ x : xPos, y : yPos, scale:{x:0.3,y:0.3} }, 200).delay(delay + 5*i).easing(TWEEN.Easing.Quadratic.Out).start(app.game.time)
-            new TWEEN.Tween(this.ball).to({ alpha : 0 }, 220).delay(delay + 7*i).easing(TWEEN.Easing.Quadratic.Out).start(app.game.time)
+            let xPos = (120 + 80*Math.random()) * (0.1 + Math.random()) * vectorX
+            let yPos = (120 + 80*Math.random()) * (0.1 + Math.random()) * vectorY
+            new TWEEN.Tween(this.ball).to({ x : xPos, y : yPos, scale:{x:0.3,y:0.3} }, 220).delay(delay + i/2).easing(TWEEN.Easing.Quadratic.Out).start(app.game.time)
+            new TWEEN.Tween(this.ball).to({ alpha : 0 }, 200).delay(delay + i/1.5 + 150).easing(TWEEN.Easing.Quadratic.Out).start(app.game.time)
         }
     }
 }

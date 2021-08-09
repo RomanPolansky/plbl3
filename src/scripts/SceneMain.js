@@ -13,7 +13,7 @@ export class SceneMain extends PIXI.Container
     {
         super()
         this.sortableChildren = true
-
+        this.ball = []
         this.fadeRect = new PIXI.Graphics()
         this.fadeRect.zIndex = 3
         this.fadeRect.beginFill(0)
@@ -26,6 +26,9 @@ export class SceneMain extends PIXI.Container
         this.arrow.zIndex = 2
         this.arrow.scale.set(0.2)
         this.arrow.anchor.set(0.5)
+        this.arrowCont = new PIXI.Container()
+        this.arrowCont.sortableChildren = true
+        this.arrowCont.addChild(this.arrow)
         this.spin = new Spin()
         this.spinCenter = new SpinCenter()
         this.prizeBar = new PrizeBar()
@@ -36,8 +39,10 @@ export class SceneMain extends PIXI.Container
         this.hand.alpha = 0
         this.hand.scale.set(0.8)
         
-        this.addChild(this.spin, this.spinCenter, this.prizeBar, this.arrow)
+        this.addChild(this.spin, this.spinCenter, this.prizeBar, this.arrowCont)
         this.addChild(this.storeButton, this.hand, this.fadeRect)
+
+        this.ticker()
 
         app.eventer.on('wheelStop', () =>{
             let tElem = this.spin.data[0]
@@ -65,33 +70,44 @@ export class SceneMain extends PIXI.Container
         app.eventer.on('wheelStart', () =>{
             this.particle()
         })
-
-        setTimeout(() => {
-            this.showHand(600)
-        }, 100);
+    }
+    ticker()
+    {
+        let time = 3300
+        app.eventer.on('spinClick', ()=>{
+            app.game.app.ticker.remove(func)
+        })
+        let func = () => {
+            if (app.game.app.ticker.lastTime > time)
+            {
+                this.showHand()
+                app.game.app.ticker.remove(func)
+            }
+        }
+        app.game.app.ticker.add(func)
     }
     particle()
     {
-        for (let i = 0; i < 35; i++)
+        for (let i = 0; i < 75; i++)
         {
-            let delay = 70
+            let delay = 35
 
-            this.ball = new PIXI.Sprite(myLoader.resources['game'].textures['ball'])
-            this.ball.zIndex = 1
-            this.ball.anchor.set(0.5)
-            this.ball.scale.set(0.15)
-            this.ball.x = this.arrow.x
-            this.ball.y = this.arrow.y + this.arrow.height/2 - this.ball.height
-            this.addChild(this.ball)
+            this.ball[i] = new PIXI.Sprite(myLoader.resources['game'].textures['ball'])
+            this.ball[i].zIndex = 0
+            this.ball[i].anchor.set(0.5)
+            this.ball[i].scale.set(0.15)
+            this.ball[i].x = this.arrow.x
+            this.ball[i].y = this.arrow.y + this.arrow.height/2 - this.ball[i].height
+            this.arrowCont.addChild(this.ball[i])
 
             let vectorY = 1
             if (Math.random() > 0.44) vectorY = -1
-            let xPos = (140 + 80*Math.random()) * -1 
-            let yPos = (60*Math.random()) * (0.1 + Math.random()) * vectorY
+            let xPos = -350 
+            let yPos = (100*Math.random()) * (0.1 + Math.random()) * vectorY
 
-            new Tween(this.ball).to({ scale:{x:0.35 - (i/250),y:0.35 - (i/250)} }, 50).delay(delay*i + 15*i).start(app.game.time)
-            new Tween(this.ball).to({ x : this.ball.x + xPos, y : this.ball.y + yPos}, 450).delay(delay*i + 15*i).start(app.game.time)
-            new Tween(this.ball).to({ alpha : 0 }, 350-(i*1.5)).delay(delay*i + 15*i + 150-(i*1.5)).start(app.game.time)
+            new Tween(this.ball[i]).to({ scale:{x:0.38 - (i/440),y:0.35 - (i/440)} }, 30).delay(delay*i).start(app.game.time)
+            new Tween(this.ball[i]).to({ x : this.ball[i].x + xPos, y : this.ball[i].y + yPos}, 600).delay(delay*i).start(app.game.time)
+            new Tween(this.ball[i]).to({ alpha : 0 }, 400-i*1.5).delay(delay*i + 250 - i*1.5).start(app.game.time)
         }
     }
     unShow(delay = 0)
@@ -149,8 +165,8 @@ export class SceneMain extends PIXI.Container
             this.storeButton.x = this.spin.x
             this.storeButton.y = this.spin.y + this.spin.height/2 + this.storeButton.height/2
         }
-        this.arrow.x = this.spin.x
-        this.arrow.y = this.spin.y - this.spin.height/2 + this.arrow.height/10
+        this.arrowCont.x = this.spin.x
+        this.arrowCont.y = this.spin.y - this.spin.height/2 + this.arrow.height/10
     }
     fade()
     {
@@ -165,7 +181,7 @@ export class SceneMain extends PIXI.Container
         prizeItem.zIndex = 3
         this.addChild(prizeItem)
     }
-    showHand(delay)
+    showHand()
     {
         this.hand.x = this.spinCenter.x + this.hand.width*0.7
         this.hand.y = this.spinCenter.y - this.hand.height*1.5
@@ -173,12 +189,12 @@ export class SceneMain extends PIXI.Container
         let xPos = this.spinCenter.x
         let yPos = this.spinCenter.y
 
-        app.eventer.on('wheelStart', ()=>{
+        app.eventer.on('spinClick', ()=>{
             this.hand.alpha = 0
         })
 
-        new Tween(this.hand).to({ alpha : 1 }, 100).delay(delay).start(app.game.time)
-        new Tween(this.hand).to({ x : xPos, y : yPos }, 300).delay(delay).start(app.game.time).onComplete(()=>{
+        new Tween(this.hand).to({ alpha : 1 }, 100).start(app.game.time)
+        new Tween(this.hand).to({ x : xPos, y : yPos }, 300).start(app.game.time).onComplete(()=>{
             new Tween(this.hand).to({ x : xPos + 50, y : yPos - 50}, 260).yoyo(true).repeat(2).start(app.game.time).onComplete(()=>{
                 new Tween(this.hand).to({ alpha : 0 }, 200).start(app.game.time)
             })

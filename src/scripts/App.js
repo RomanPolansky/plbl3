@@ -50,8 +50,8 @@ export class App
             if (app.moveCount === 3)
             {
                 this.sceneMain.unShow(750)
-                this.clouds.animation(900, 700)
-                this.clouds.goToPS(900)
+                this.clouds.animation(1000, 700)
+                this.clouds.goToPS(950)
             }
         })
     }

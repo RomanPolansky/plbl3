@@ -24,7 +24,7 @@ export class ScenePS extends PIXI.Container
             fontSize: 50,
             fill: 0xffffff,
             stroke: 0x0066cf,
-            strokeThickness: 5,
+            strokeThickness: 4.7,
             align: 'center'
         })
         this.text.anchor.set(0.5)
@@ -105,24 +105,28 @@ export class ScenePS extends PIXI.Container
                 return --t * t * ((s + 1) * t + s) + 1
             }
         }
-        new TWEEN.Tween(this.prize1).to({ scale : { x : 1, y: 1 } }, 300).easing(getBackOut(4)).start(app.game.time)
+        new TWEEN.Tween(this.prize1).to({ scale : { x : 1, y: 1 } }, 300).easing(getBackOut(3)).start(app.game.time)
         new TWEEN.Tween(this.prizeText1).to({ scale : { x : 1, y: 1 } }, 200).start(app.game.time).onComplete(()=>{
-            new TWEEN.Tween(this.prize2).to({ scale : { x : 1, y: 1 } }, 300).easing(getBackOut(4)).start(app.game.time)
+            new TWEEN.Tween(this.prize2).to({ scale : { x : 1, y: 1 } }, 300).easing(getBackOut(3)).start(app.game.time)
             new TWEEN.Tween(this.prizeText2).to({ scale : { x : 1, y: 1 } }, 200).start(app.game.time).onComplete(()=>{
-                new TWEEN.Tween(this.prize3).to({ scale : { x : 1, y: 1 } }, 300).easing(getBackOut(4)).start(app.game.time)
-                new TWEEN.Tween(this.prizeText3).to({ scale : { x : 1, y: 1 } }, 200).start(app.game.time).onComplete(()=>{
-                    
-                })
+                new TWEEN.Tween(this.prize3).to({ scale : { x : 1, y: 1 } }, 300).easing(getBackOut(3)).start(app.game.time)
+                new TWEEN.Tween(this.prizeText3).to({ scale : { x : 1, y: 1 } }, 200).start(app.game.time)
                 new TWEEN.Tween(tObj).to({ value3 : prizeObj.value3 }, 1000).start(app.game.time).onUpdate(()=>{
                     this.prizeText3.text = Math.round(tObj.value3)
+                }).onComplete(()=>{
+                    new TWEEN.Tween(this.prize3).to({ scale : { x : 1.2, y: 1.2 } }, 200).yoyo(true).repeat(1).start(app.game.time)
                 })
             })
             new TWEEN.Tween(tObj).to({ value2 : prizeObj.value2 }, 1000).start(app.game.time).onUpdate(()=>{
                 this.prizeText2.text = Math.round(tObj.value2)
+            }).onComplete(()=>{
+                new TWEEN.Tween(this.prize2).to({ scale : { x : 1.2, y: 1.2 } }, 200).yoyo(true).repeat(1).start(app.game.time)
             })
         })
         new TWEEN.Tween(tObj).to({ value1 : prizeObj.value1 }, 1000).start(app.game.time).onUpdate(()=>{
             this.prizeText1.text = Math.round(tObj.value1)
+        }).onComplete(()=>{
+            new TWEEN.Tween(this.prize1).to({ scale : { x : 1.2, y: 1.2 } }, 200).yoyo(true).repeat(1).start(app.game.time)
         })
     }
     resize(width, height)

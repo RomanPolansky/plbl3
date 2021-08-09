@@ -9,7 +9,6 @@ export class Clouds extends PIXI.Container
     {
         super()
         this.bg = bg
-        this.fix = false
         this.sortableChildren = true
         this.cloud()
         this.perlinNoise = new PerlinNoise(p)
@@ -46,18 +45,9 @@ export class Clouds extends PIXI.Container
         this.addChild(this.cloudRight8)
         /*__________________*/
 
-        this.addChild(this.cloudLeft1)
-        this.addChild(this.cloudLeft2)
-        this.addChild(this.cloudLeft3)
-        this.addChild(this.cloudLeft4)
-        this.addChild(this.cloudLeft5)
-        this.addChild(this.cloudLeft6)
+        this.addChild(this.cloudLeft1, this.cloudLeft2, this.cloudLeft3, this.cloudLeft4, this.cloudLeft5, this.cloudLeft6)
 
-        this.addChild(this.cloudRight1)
-        this.addChild(this.cloudRight2)
-        this.addChild(this.cloudRight3)
-        this.addChild(this.cloudRight4)
-        this.addChild(this.cloudRight5)
+        this.addChild(this.cloudRight1, this.cloudRight2, this.cloudRight3, this.cloudRight4, this.cloudRight5)
 
         this.cloudArrLeft = [
             this.cloudLeft1,
@@ -223,7 +213,6 @@ export class Clouds extends PIXI.Container
     }
     animation(time, delay)
     {
-        this.fix = true
         let arr1 = this.cloudArrLeft
         let arr2 = this.cloudArrRight
         for (let i = 0; i < arr1.length; i++)
@@ -287,17 +276,14 @@ export class Clouds extends PIXI.Container
         this.cloudPosition()
         if (this.scenePS !== undefined) this.scenePS.resize(width, height)
 
-        if (this.fix)
-        {
-            setTimeout(() => {
-                this.cloudPosition()
-            }, 310)
-            setTimeout(() => {
-                this.cloudPosition()
-            }, 620)
-            setTimeout(() => {
-                this.cloudPosition()
-            }, 930)
-        }
+        setTimeout(() => {
+            this.cloudPosition()
+        }, 310)
+        setTimeout(() => {
+            this.cloudPosition()
+        }, 620)
+        setTimeout(() => {
+            this.cloudPosition()
+        }, 930)
     }
 }

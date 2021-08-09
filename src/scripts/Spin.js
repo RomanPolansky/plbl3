@@ -1,6 +1,6 @@
 import TWEEN from '@tweenjs/tween.js'
 import * as PIXI from 'pixi.js'
-import { sprites, app, prizes } from './Global'
+import { sprites, app } from './Global'
 
 export class Spin extends PIXI.Container
 {
@@ -44,7 +44,7 @@ export class Spin extends PIXI.Container
 
         if (newAngle !== undefined)
         {
-            new TWEEN.Tween(this).to({angle : newAngle }, 4500).easing(getBackOut(0.5)).start(app.game.time).onComplete(() => {
+            new TWEEN.Tween(this).to({angle : newAngle }, 4400).easing(getBackOut(0.5)).start(app.game.time).onComplete(() => {
                 app.eventer.emit('wheelStop')
             })            
         }
