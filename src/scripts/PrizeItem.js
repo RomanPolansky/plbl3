@@ -13,6 +13,7 @@ export class PrizeItem extends PIXI.Container
 
         this.bar = bar
         this.prizeArr = []
+        this.ball = []
 
         if (type === 'coin') this.sprite = sprites.winCoin
         if (type === 'puzzle') this.sprite = sprites.winPuzzle
@@ -77,11 +78,11 @@ export class PrizeItem extends PIXI.Container
     {
         for (let i = 0; i < 100; i++)
         {
-            this.ball = new PIXI.Sprite(myLoader.resources['game'].textures['ball'])
-            this.ball.zIndex = 0
-            this.ball.anchor.set(0.5)
-            this.ball.scale.set(0.7)
-            this.addChild(this.ball)
+            this.ball[i] = new PIXI.Sprite(myLoader.resources['game'].textures['ball'])
+            this.ball[i].zIndex = 0
+            this.ball[i].anchor.set(0.5)
+            this.ball[i].scale.set(0.7)
+            this.addChild(this.ball[i])
 
             let vectorX = 1
             let vectorY = 1
@@ -89,8 +90,10 @@ export class PrizeItem extends PIXI.Container
             if (Math.random() > 0.44) vectorY = -1
             let xPos = (120 + 80*Math.random()) * (0.1 + Math.random()) * vectorX
             let yPos = (120 + 80*Math.random()) * (0.1 + Math.random()) * vectorY
-            new TWEEN.Tween(this.ball).to({ x : xPos, y : yPos, scale:{x:0.3,y:0.3} }, 220).delay(delay + i/2).easing(TWEEN.Easing.Quadratic.Out).start(app.game.time)
-            new TWEEN.Tween(this.ball).to({ alpha : 0 }, 200).delay(delay + i/1.5 + 150).easing(TWEEN.Easing.Quadratic.Out).start(app.game.time)
+            new TWEEN.Tween(this.ball[i]).to({ x : xPos, y : yPos, scale:{x:0.3,y:0.3} }, 220).delay(delay + i/2).easing(TWEEN.Easing.Quadratic.Out).start(app.game.time)
+            new TWEEN.Tween(this.ball[i]).to({ alpha : 0 }, 200).delay(delay + i/1.5 + 150).easing(TWEEN.Easing.Quadratic.Out).start(app.game.time).onComplete(()=>{
+                this.ball[i].destroy()
+            })
         }
     }
 }

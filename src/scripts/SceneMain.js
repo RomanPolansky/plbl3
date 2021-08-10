@@ -73,7 +73,7 @@ export class SceneMain extends PIXI.Container
     }
     ticker()
     {
-        let time = 3300
+        let time = 3500
         app.eventer.on('spinClick', ()=>{
             app.game.app.ticker.remove(func)
         })
@@ -106,8 +106,11 @@ export class SceneMain extends PIXI.Container
             let yPos = (100*Math.random()) * (0.1 + Math.random()) * vectorY
 
             new Tween(this.ball[i]).to({ scale:{x:0.38 - (i/440),y:0.35 - (i/440)} }, 30).delay(delay*i).start(app.game.time)
-            new Tween(this.ball[i]).to({ x : this.ball[i].x + xPos, y : this.ball[i].y + yPos}, 600).delay(delay*i).start(app.game.time)
             new Tween(this.ball[i]).to({ alpha : 0 }, 400-i*1.5).delay(delay*i + 250 - i*1.5).start(app.game.time)
+            new Tween(this.ball[i]).to({ x : this.ball[i].x + xPos, y : this.ball[i].y + yPos}, 600).delay(delay*i).start(app.game.time).onComplete(()=>{
+                this.ball[i].destroy()
+            })
+            
         }
     }
     unShow(delay = 0)
