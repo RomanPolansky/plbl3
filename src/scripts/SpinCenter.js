@@ -1,7 +1,7 @@
 import { Tween } from '@tweenjs/tween.js'
 import * as PIXI from 'pixi.js'
 import { sprites, app } from './Global'
-
+import { clickSound } from './sound'
 export class SpinCenter extends PIXI.Container
 {
     constructor()
@@ -39,8 +39,14 @@ export class SpinCenter extends PIXI.Container
         })
 
         setTimeout(() => {
-            new Tween(this.btnCont).to({scale : { x: 1.15, y: 1.15} }, 250).yoyo(true).repeat(3).start(app.game.time)
+            this.animation()
         }, 200);
+    }
+    animation()
+    {
+        new Tween(this.btnCont).to({scale : { x: 1.15, y: 1.15} }, 250).yoyo(true).repeat(3).start(app.game.time).onComplete(()=>{
+            this.btnCont.scale.set(1)
+        })
     }
     click()
     {
@@ -51,6 +57,7 @@ export class SpinCenter extends PIXI.Container
             new Tween(this.btnCont).to({scale : { x: 0.87, y: 0.87} }, 200).yoyo(true).repeat(1).start(app.game.time).onComplete(() => {
                 app.eventer.emit('wheelStart')
             })
+            clickSound.play()
         }
     }
 }

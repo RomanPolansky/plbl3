@@ -4,6 +4,7 @@ import { BackGround } from './BackGround'
 import { Clouds } from './Clounds'
 import { SceneMain } from './SceneMain'
 import { app } from './Global'
+import { bgSound } from './sound'
 export class App
 {
     constructor()
@@ -29,8 +30,6 @@ export class App
     }
     start()
     {
-        this.resize(window.innerWidth, window.innerHeight)
-
         this.bg = new BackGround()
         this.app.stage.addChild(this.bg)
         this.bg.zIndex = 0
@@ -45,6 +44,8 @@ export class App
         this.app.ticker.add(this.update.bind(this))
 
        this.resize(window.innerWidth, window.innerHeight)
+    
+       bgSound.play()
 
         app.eventer.on('gotPrize', ()=>{
             if (app.moveCount === 3)

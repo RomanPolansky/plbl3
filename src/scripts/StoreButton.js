@@ -1,7 +1,7 @@
 import * as PIXI from 'pixi.js'
 import { Tween } from '@tweenjs/tween.js'
 import { app } from './Global'
-
+import { clickSound } from './sound'
 export class StoreButton extends PIXI.Container
 {
     constructor(sprite)
@@ -25,6 +25,7 @@ export class StoreButton extends PIXI.Container
         this.buttonMode = true
 
         this.on('pointerup', ()=>{
+            clickSound.play()
             console.log('скачать')
         })
     }

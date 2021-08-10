@@ -24,7 +24,7 @@ export class SceneMain extends PIXI.Container
 
         this.arrow = sprites.arrow
         this.arrow.zIndex = 2
-        this.arrow.scale.set(0.2)
+        this.arrow.scale.set(0.7)
         this.arrow.anchor.set(0.5)
         this.arrowCont = new PIXI.Container()
         this.arrowCont.sortableChildren = true
@@ -69,6 +69,23 @@ export class SceneMain extends PIXI.Container
         })
         app.eventer.on('wheelStart', () =>{
             this.particle()
+        })
+        app.eventer.on('gotPrize', ()=>{
+            let time = 3000
+            let func = () => {
+                if (time > 0)
+                {
+                    time -= app.game.app.ticker.deltaMS
+                } else
+                {
+                    this.spinCenter.animation()
+                    app.game.app.ticker.remove(func)
+                }
+            }
+            app.game.app.ticker.add(func)
+            app.eventer.on('spinClick', ()=>{
+                app.game.app.ticker.remove(func)
+            })
         })
     }
     ticker()

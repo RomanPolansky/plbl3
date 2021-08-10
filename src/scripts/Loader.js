@@ -1,5 +1,5 @@
 import * as PIXI from 'pixi.js'
-import { cloudSS, cloudJSON, gameSS, gameJSON, bg } from './spriteData'
+import { cloudSS, cloudJSON, gameSS, gameJSON, bg } from './base64Data'
 import { sprites } from './Global'
 
 export const myLoader = PIXI.Loader.shared

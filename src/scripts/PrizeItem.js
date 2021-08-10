@@ -2,7 +2,7 @@ import * as PIXI from 'pixi.js'
 import { sprites, app } from './Global'
 import { myLoader } from './Loader'
 import TWEEN from '@tweenjs/tween.js'
-
+import { spawnSound } from './sound'
 export class PrizeItem extends PIXI.Container
 {
     constructor(type, num, bar)
@@ -70,8 +70,11 @@ export class PrizeItem extends PIXI.Container
         this.y = position.y;
         new TWEEN.Tween(this).to({ x : 0, y : 0 }, 200).easing(TWEEN.Easing.Quadratic.Out).start(app.game.time)
         new TWEEN.Tween(this).to({ scale : { x : 0.65, y : 0.65 } }, 300).easing(TWEEN.Easing.Back.Out).start(app.game.time)
-        this.particle(180)
         new TWEEN.Tween(targetElCont.children[1]).to({ alpha : 0 }, 200).start(app.game.time)
+
+        this.particle(180)
+        spawnSound.play()
+        
         app.eventer.emit('gotPrize')
     }
     particle(delay)
@@ -94,6 +97,7 @@ export class PrizeItem extends PIXI.Container
             new TWEEN.Tween(this.ball[i]).to({ alpha : 0 }, 200).delay(delay + i/1.5 + 150).easing(TWEEN.Easing.Quadratic.Out).start(app.game.time).onComplete(()=>{
                 this.ball[i].destroy()
             })
+
         }
     }
 }

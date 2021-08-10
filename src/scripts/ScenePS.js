@@ -3,7 +3,7 @@ import TWEEN from '@tweenjs/tween.js'
 import { sprites, app, prizes } from './Global'
 import { StoreButton } from './StoreButton'
 import { myLoader } from './Loader'
-
+import { scaleSound } from './sound'
 export class ScenePS extends PIXI.Container
 {
     constructor()
@@ -186,6 +186,7 @@ export class ScenePS extends PIXI.Container
                                 this.prizeText3.text = Math.round(tObj.value3)
                             }).onComplete(()=>{
                                 new TWEEN.Tween(this.prize3).to({ scale : { x : 1.2, y: 1.2 } }, 200).yoyo(true).repeat(1).start(app.game.time)
+                                scaleSound.play()
                             })
                         }
                     })
@@ -193,6 +194,7 @@ export class ScenePS extends PIXI.Container
                         this.prizeText2.text = Math.round(tObj.value2)
                     }).onComplete(()=>{
                         new TWEEN.Tween(this.prize2).to({ scale : { x : 1.2, y: 1.2 } }, 200).yoyo(true).repeat(1).start(app.game.time)
+                        scaleSound.play()
                     })
                 }
             })
@@ -200,6 +202,7 @@ export class ScenePS extends PIXI.Container
                 this.prizeText1.text = Math.round(tObj.value1)
             }).onComplete(()=>{
                 new TWEEN.Tween(this.prize1).to({ scale : { x : 1.2, y: 1.2 } }, 200).yoyo(true).repeat(1).start(app.game.time)
+                scaleSound.play()
             })
         }
     }

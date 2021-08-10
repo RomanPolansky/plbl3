@@ -1,7 +1,7 @@
 import TWEEN from '@tweenjs/tween.js'
 import * as PIXI from 'pixi.js'
 import { sprites, app } from './Global'
-
+import { spinSound } from './sound'
 export class Spin extends PIXI.Container
 {
     constructor()
@@ -44,6 +44,7 @@ export class Spin extends PIXI.Container
 
         if (newAngle !== undefined)
         {
+            spinSound.play()
             new TWEEN.Tween(this).to({angle : newAngle }, 4300).easing(getBackOut(0.4)).start(app.game.time).onComplete(() => {
                 app.eventer.emit('wheelStop')
             })            

@@ -1,0 +1,180 @@
+{"frames": {
+
+"arrow":
+{
+	"frame": {"x":511,"y":1893,"w":75,"h":150},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":75,"h":150},
+	"sourceSize": {"w":75,"h":150}
+},
+"ball":
+{
+	"frame": {"x":887,"y":1960,"w":81,"h":80},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":81,"h":80},
+	"sourceSize": {"w":81,"h":80}
+},
+"bingo":
+{
+	"frame": {"x":667,"y":1728,"w":116,"h":113},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":116,"h":113},
+	"sourceSize": {"w":116,"h":113}
+},
+"button":
+{
+	"frame": {"x":961,"y":744,"w":518,"h":133},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":518,"h":133},
+	"sourceSize": {"w":518,"h":133}
+},
+"buttonShadow":
+{
+	"frame": {"x":1,"y":1893,"w":506,"h":152},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":6,"y":22,"w":506,"h":152},
+	"sourceSize": {"w":518,"h":174}
+},
+"chest":
+{
+	"frame": {"x":1,"y":576,"w":661,"h":703},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":661,"h":703},
+	"sourceSize": {"w":661,"h":703}
+},
+"chestStar":
+{
+	"frame": {"x":887,"y":1846,"w":110,"h":105},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":110,"h":105},
+	"sourceSize": {"w":110,"h":105}
+},
+"circleBar":
+{
+	"frame": {"x":961,"y":596,"w":145,"h":144},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":145,"h":144},
+	"sourceSize": {"w":145,"h":144}
+},
+"coin":
+{
+	"frame": {"x":992,"y":479,"w":114,"h":113},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":114,"h":113},
+	"sourceSize": {"w":114,"h":113}
+},
+"hand":
+{
+	"frame": {"x":725,"y":326,"w":263,"h":221},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":263,"h":221},
+	"sourceSize": {"w":263,"h":221}
+},
+"light":
+{
+	"frame": {"x":667,"y":1266,"w":458,"h":420},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":458,"h":420},
+	"sourceSize": {"w":458,"h":420}
+},
+"logo":
+{
+	"frame": {"x":725,"y":551,"w":472,"h":232},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":3,"w":472,"h":232},
+	"sourceSize": {"w":476,"h":238}
+},
+"luckyCoin":
+{
+	"frame": {"x":784,"y":1728,"w":114,"h":113},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":114,"h":113},
+	"sourceSize": {"w":114,"h":113}
+},
+"packshotBlock":
+{
+	"frame": {"x":1,"y":1,"w":571,"h":720},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":571,"h":720},
+	"sourceSize": {"w":571,"h":720}
+},
+"playBtn":
+{
+	"frame": {"x":590,"y":1893,"w":109,"h":124},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":15,"y":0,"w":109,"h":124},
+	"sourceSize": {"w":124,"h":124}
+},
+"puzzle":
+{
+	"frame": {"x":992,"y":326,"w":114,"h":149},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":114,"h":149},
+	"sourceSize": {"w":114,"h":149}
+},
+"questionMark":
+{
+	"frame": {"x":996,"y":1728,"w":57,"h":87},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":57,"h":87},
+	"sourceSize": {"w":57,"h":87}
+},
+"rect":
+{
+	"frame": {"x":703,"y":1848,"w":181,"h":180},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":181,"h":180},
+	"sourceSize": {"w":181,"h":180}
+},
+"spark":
+{
+	"frame": {"x":725,"y":1,"w":321,"h":331},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":0,"w":321,"h":331},
+	"sourceSize": {"w":322,"h":331}
+},
+"spinCircle":
+{
+	"frame": {"x":708,"y":1027,"w":232,"h":231},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":232,"h":231},
+	"sourceSize": {"w":232,"h":231}
+},
+"wheel":
+{
+	"frame": {"x":1,"y":1241,"w":648,"h":662},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":1,"w":648,"h":662},
+	"sourceSize": {"w":650,"h":664}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "ss.png",
+	"format": "RGBA8888",
+	"size": {"w":1107,"h":2046},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:0a86734140e297b517758b0fe32a0919:bd51e616c64dc9eb295b7ef966e516bb:7a7dafe8686879c23378e53f9469620c$"
+}
+}
