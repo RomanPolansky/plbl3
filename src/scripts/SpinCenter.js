@@ -44,7 +44,7 @@ export class SpinCenter extends PIXI.Container
     }
     click()
     {
-        if (!this.isClicked && app.moveCount < 3)
+        if (!this.isClicked && app.isGameplay && app.moveCount < 3)
         {
             this.isClicked = true
             app.eventer.emit('spinClick')

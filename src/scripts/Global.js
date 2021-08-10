@@ -1,6 +1,7 @@
 export const sprites = {}
 export const app = {
-    moveCount: 0
+    moveCount: 0,
+    isGameplay: true
 }
 export const prizes = {
     coin: 0,

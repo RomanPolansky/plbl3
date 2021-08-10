@@ -49,11 +49,35 @@ export class App
         app.eventer.on('gotPrize', ()=>{
             if (app.moveCount === 3)
             {
-                this.sceneMain.unShow(750)
-                this.clouds.animation(1000, 700)
-                this.clouds.goToPS(950)
+               this.packshot()
             }
         })
+        this.autoPS()
+    }
+    autoPS()
+    {
+        this.timeToPS = 15500 //ms
+        app.eventer.on('spinClick', ()=>{
+            this.timeToPS += 6800
+        })
+        const timer = () => {
+            if (this.timeToPS >= 0 && app.isGameplay)
+            {
+                this.timeToPS -= this.app.ticker.deltaMS
+            } else
+            {
+                this.app.ticker.remove(timer)
+                if (app.isGameplay) this.packshot()
+            }
+        } 
+        this.app.ticker.add(timer)
+    }
+    packshot()
+    {
+        app.isGameplay = false
+        this.sceneMain.unShow(750)
+        this.clouds.animation(1000, 700)
+        this.clouds.goToPS(950) 
     }
     update()
     {

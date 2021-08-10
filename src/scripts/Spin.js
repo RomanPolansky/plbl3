@@ -44,7 +44,7 @@ export class Spin extends PIXI.Container
 
         if (newAngle !== undefined)
         {
-            new TWEEN.Tween(this).to({angle : newAngle }, 4400).easing(getBackOut(0.5)).start(app.game.time).onComplete(() => {
+            new TWEEN.Tween(this).to({angle : newAngle }, 4300).easing(getBackOut(0.4)).start(app.game.time).onComplete(() => {
                 app.eventer.emit('wheelStop')
             })            
         }

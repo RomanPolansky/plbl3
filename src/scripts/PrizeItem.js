@@ -49,8 +49,8 @@ export class PrizeItem extends PIXI.Container
 
         new TWEEN.Tween(this.spark).to({ angle : 360 }, 4000).repeat(Infinity).start(app.game.time)
         new TWEEN.Tween(this.spark).to({scale : { x : 2.5, y : 2.5 }, alpha : 1 }, 350).easing(TWEEN.Easing.Back.Out).start(app.game.time)
-        new TWEEN.Tween(this.sprite).to({scale : { x : this.spriteScale, y : this.spriteScale } }, 1000).easing(TWEEN.Easing.Back.Out).start(app.game.time)
-        new TWEEN.Tween(this.text).to({scale : { x : 1, y : 1 } }, 1000).delay(150).easing(TWEEN.Easing.Back.Out).start(app.game.time).onComplete(()=>{
+        new TWEEN.Tween(this.sprite).to({scale : { x : this.spriteScale, y : this.spriteScale } }, 900).easing(TWEEN.Easing.Back.Out).start(app.game.time)
+        new TWEEN.Tween(this.text).to({scale : { x : 0.98, y : 0.98 } }, 900).delay(150).easing(TWEEN.Easing.Back.Out).start(app.game.time).onComplete(()=>{
             new TWEEN.Tween(this.spark).to({ scale : { x : 0, y : 0 }, alpha : 0 }, 350).start(app.game.time)
             new TWEEN.Tween(this.text).to({ scale : { x : 0, y : 0 }, alpha : 0 }, 350).delay(50).start(app.game.time).onComplete(()=>{
                 this.moveToBar()

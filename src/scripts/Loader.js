@@ -120,6 +120,13 @@ export function loaderAdd() {
 
         /* __________________________________________________________________________________ */
 
+        sprites.chest = new PIXI.Sprite(resources['game'].textures['chest'])
+        sprites.chest.anchor.set(0.5)
+        sprites.light = new PIXI.Sprite(resources['game'].textures['light'])
+        sprites.light.anchor.set(0.5)
+        sprites.chestSpark = new PIXI.Sprite(resources['game'].textures['spark'])
+        sprites.chestSpark.anchor.set(0.5)
+
         sprites.winCoin = new PIXI.Sprite(resources['game'].textures['coin'])
         sprites.winCoin.anchor.set(0.5)
 
