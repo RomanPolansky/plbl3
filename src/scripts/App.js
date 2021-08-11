@@ -57,7 +57,7 @@ export class App
     }
     autoPS()
     {
-        this.timeToPS = 15500 //ms
+        this.timeToPS = 16500 //ms
         app.eventer.on('spinClick', ()=>{
             this.timeToPS += 6800
         })

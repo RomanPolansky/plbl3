@@ -37,15 +37,29 @@ export class SpinCenter extends PIXI.Container
         app.eventer.on('gotPrize', () => {
             this.isClicked = false
         })
-
-        setTimeout(() => {
-            this.animation()
-        }, 200);
+        this.animation()
     }
     animation()
     {
-        new Tween(this.btnCont).to({scale : { x: 1.15, y: 1.15} }, 250).yoyo(true).repeat(3).start(app.game.time).onComplete(()=>{
-            this.btnCont.scale.set(1)
+        let tween = new Tween(this.btnCont).to({scale : { x: 1.15, y: 1.15} }, 250).yoyo(true).repeat(3)
+        
+        let time = 500
+        let spinRoll = false
+        const func = () => {
+            time -= app.game.app.ticker.deltaMS
+            if (time < 0)
+            {
+                time = 2500
+                if (!spinRoll && app.isGameplay) tween.start(app.game.time)
+            }
+        }
+        app.game.app.ticker.add(func)
+        app.eventer.on('wheelStart', ()=>{
+            spinRoll = true
+        })
+        app.eventer.on('gotPrize', ()=>{
+            spinRoll = false
+            time = 500
         })
     }
     click()
@@ -54,9 +68,7 @@ export class SpinCenter extends PIXI.Container
         {
             this.isClicked = true
             app.eventer.emit('spinClick')
-            new Tween(this.btnCont).to({scale : { x: 0.87, y: 0.87} }, 200).yoyo(true).repeat(1).start(app.game.time).onComplete(() => {
-                app.eventer.emit('wheelStart')
-            })
+            app.eventer.emit('wheelStart')
             clickSound.play()
         }
     }

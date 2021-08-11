@@ -70,23 +70,6 @@ export class SceneMain extends PIXI.Container
         app.eventer.on('wheelStart', () =>{
             this.particle()
         })
-        app.eventer.on('gotPrize', ()=>{
-            let time = 3000
-            let func = () => {
-                if (time > 0)
-                {
-                    time -= app.game.app.ticker.deltaMS
-                } else
-                {
-                    this.spinCenter.animation()
-                    app.game.app.ticker.remove(func)
-                }
-            }
-            app.game.app.ticker.add(func)
-            app.eventer.on('spinClick', ()=>{
-                app.game.app.ticker.remove(func)
-            })
-        })
     }
     ticker()
     {
